@@ -45,12 +45,12 @@
     <div class="container-menu-desktop">
       <!-- Topbar -->
       <div class="top-bar">
-        <div class="content-topbar flex-sb-m h-full container">
+        <div class="content-topbar flex-c-m h-full container">
           <div class="left-top-bar">
-            Free shipping for standard order over $100
+            Receive 3 free samples with any order + free shipping with any $50+ order
           </div>
 
-          <div class="right-top-bar flex-w h-full">
+          <!-- <div class="right-top-bar flex-w h-full">
             <a href="#" class="flex-c-m trans-04 p-lr-25">
               Help & FAQs
             </a>
@@ -66,7 +66,7 @@
             <a href="#" class="flex-c-m trans-04 p-lr-25">
               USD
             </a>
-          </div>
+          </div> -->
         </div>
       </div>
 
