@@ -333,45 +333,50 @@
           <ul>
             <li class="p-b-10">
               <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Cleansers & Toners
+                Facial Cleansers
               </a>
             </li>
 
             <li class="p-b-10">
               <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Day Care
+                Tonners
               </a>
             </li>
 
             <li class="p-b-10">
               <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Serums
+                Face Serums
               </a>
             </li>
 
             <li class="p-b-10">
               <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Cleansing Oils
+                Eye Cares
               </a>
             </li>
             <li class="p-b-10">
               <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Body Care
+                Face Treatment Oils
               </a>
             </li>
             <li class="p-b-10">
               <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Eyes, Lips & Neck
+                Make up
               </a>
             </li>
             <li class="p-b-10">
               <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Sun Protection
+                Body
               </a>
             </li>
             <li class="p-b-10">
               <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Make-Up
+                Self Tanning
+              </a>
+            </li>
+            <li class="p-b-10">
+              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
+                Men
               </a>
             </li>
           </ul>
@@ -468,7 +473,7 @@
   </div>
 
   <!-- Modal1 -->
-  
+
 
   <!--===============================================================================================-->
   <script src="{{asset('user')}}/vendor/jquery/jquery-3.2.1.min.js"></script>
