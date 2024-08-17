@@ -4,29 +4,16 @@
     <div class="container">
       <div class="flex-w flex-sb-m p-b-52">
         <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+          <a href="{{url('/product')}}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1">
             All Products
-          </button>
+          </a>
+          @foreach($categories as $category)
+          <a href="{{url('/product/'.$category->name)}}" class="stext-106 cl8 hov1 bor3 trans-04 m-r-20 m-tb-5">
+            {{$category->name}}
+          </a>
+          @endforeach
 
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-            Women
-          </button>
 
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-            Men
-          </button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-            Bag
-          </button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-            Shoes
-          </button>
-
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-            Watches
-          </button>
         </div>
 
         <div class="flex-w flex-c-m m-tb-10">
@@ -247,7 +234,7 @@
       <div class="row isotope-grid">
 
         @foreach($products as $product)
-        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
+        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item category_id{{$product->category_id}}">
           <!-- Block2 -->
           <div class="block2">
             <div class="block2-pic hov-img0">
@@ -255,7 +242,7 @@
               <img src="{{ asset('user/images/product/'.$image->path)}}" alt="{{$product->name}}">
               @endforeach
 
-              <a href="" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
+              <a href="" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn2 p-lr-15 trans-04 js-show-modal1"
                 data-product="{{ json_encode($product) }}">
                 Quick View
               </a>
@@ -281,9 +268,8 @@
             </div>
           </div>
         </div>
-
-
         @endforeach
+
         <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
           <div class="overlay-modal1 js-hide-modal1"></div>
 
@@ -300,32 +286,12 @@
                       <div class="wrap-slick3-dots"></div>
                       <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
-                      <div class="slick3 gallery-lb">
-                        <div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+                      <div class="slick3 gallery-lb product-gallery" id="">
+                        <div class="item-slick3" data-thumb="">
                           <div class="wrap-pic-w pos-relative">
-                            <img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+                            <img class="product-image" src="" alt=" IMG-PRODUCT">
 
-                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
-                              <i class="fa fa-expand"></i>
-                            </a>
-                          </div>
-                        </div>
-
-                        <div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-                          <div class="wrap-pic-w pos-relative">
-                            <img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-                              <i class="fa fa-expand"></i>
-                            </a>
-                          </div>
-                        </div>
-
-                        <div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-                          <div class="wrap-pic-w pos-relative">
-                            <img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="">
                               <i class="fa fa-expand"></i>
                             </a>
                           </div>
@@ -346,87 +312,27 @@
                     <p class="stext-102 cl3 p-t-23 product-short-description">
                     </p>
 
-                    <!--  -->
-                    <!-- <div class="p-t-33">
-                      <div class="flex-w flex-r-m p-b-10">
-                        <div class="size-203 flex-c-m respon6">
-                          Size
-                        </div>
-
-                        <div class="size-204 respon6-next">
-                          <div class="rs1-select2 bor8 bg0">
-                            <select class="js-select2" name="time">
-                              <option>Choose an option</option>
-                              <option>Size S</option>
-                              <option>Size M</option>
-                              <option>Size L</option>
-                              <option>Size XL</option>
-                            </select>
-                            <div class="dropDownSelect2"></div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="flex-w flex-r-m p-b-10">
-                        <div class="size-203 flex-c-m respon6">
-                          Color
-                        </div>
-
-                        <div class="size-204 respon6-next">
-                          <div class="rs1-select2 bor8 bg0">
-                            <select class="js-select2" name="time">
-                              <option>Choose an option</option>
-                              <option>Red</option>
-                              <option>Blue</option>
-                              <option>White</option>
-                              <option>Grey</option>
-                            </select>
-                            <div class="dropDownSelect2"></div>
-                          </div>
-                        </div>
-                      </div>
-
+                    <div class="p-t-33">
                       <div class="flex-w flex-r-m p-b-10">
                         <div class="size-204 flex-w flex-m respon6-next">
                           <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                            <div class="btn-num-product-down cl8 hov-btn2 trans-04 flex-c-m">
                               <i class="fs-16 zmdi zmdi-minus"></i>
                             </div>
 
                             <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
 
-                            <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                            <div class="btn-num-product-up cl8 hov-btn2 trans-04 flex-c-m">
                               <i class="fs-16 zmdi zmdi-plus"></i>
                             </div>
                           </div>
 
-                          <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                          <button class="flex-c-m stext-101 cl0 size-101 bg10 bor2 hov-btn2 p-lr-15 trans-04 js-addcart-detail">
                             Add to cart
                           </button>
                         </div>
                       </div>
-                    </div> -->
-
-                    <!--  -->
-                    <!-- <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                      <div class="flex-m bor9 p-r-10 m-r-11">
-                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-                          <i class="zmdi zmdi-favorite"></i>
-                        </a>
-                      </div>
-
-                      <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-                        <i class="fa fa-facebook"></i>
-                      </a>
-
-                      <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-                        <i class="fa fa-twitter"></i>
-                      </a>
-
-                      <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-                        <i class="fa fa-google-plus"></i>
-                      </a>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -434,14 +340,11 @@
           </div>
         </div>
 
-
       </div>
 
-      <!-- Load more -->
+      <!-- Pagination -->
       <div class="flex-c-m flex-w w-full p-t-45">
-        <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-          Load More
-        </a>
+        {{ $products->links('pagination::bootstrap-4') }}
       </div>
     </div>
   </div>
@@ -450,15 +353,46 @@
   $('.js-show-modal1').on('click', function(e) {
     e.preventDefault();
     const product = $(this).data('product'); // get product object
-    // $products.forEach($product => {
-    //   if($product->id == product.id){
-
-    //   }
-    // });
     $('.js-modal1').addClass('show-modal1');
     $('.product-name').text(product.name);
-    $('.product-price').text(product.price);
+    $('.product-price').text(product.price.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    }));
     $('.product-short-description').text(product.short_description);
+    console.log(product)
+    const productImages = product.images; // Mảng chứa các đối tượng hình ảnh
+    // Cập nhật nội dung của slider Slick
+    $('.product-gallery').slick('unslick'); // Hủy Slick trước khi cập nhật
+    $('.product-gallery').html(''); // Xóa nội dung hiện tại
+    $.each(productImages, function(index, image) {
+      $('.product-gallery').append(`
+      <div class="item-slick3" data-thumb="{{ asset('user/images/product/${image.path}') }}">
+        <div class="wrap-pic-w pos-relative">
+          <img src="{{ asset('user/images/product/${image.path}') }}" alt=" IMG-PRODUCT">
+          </div>
+      </div>
+    `);
+    });
+    // Tạo lại các phần tử điều khiển
+    $('.product-gallery').parent().find('.wrap-slick3-dots').empty();
+    $('.product-gallery').parent().find('.wrap-slick3-arrows').empty();
+
+    // Tạo lại dots
+    $('.product-gallery').slick('getSlick').options.dots = true;
+    $('.product-gallery').slick('getSlick').options.customPaging = function(slick, index) {
+      var portrait = $(slick.$slides[index]).data('thumb');
+      return '<img src="' + portrait + '"/><div class="slick3-dot-overlay"></div>';
+
+    };
+
+    // Tạo lại arrows
+    $('.product-gallery').parent().append('<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>');
+    $('.product-gallery').slick('slickAdd', '<button class="arrow-slick3 prev-slick3"><i class="fa fa-angle-left" aria-hidden="true"></i></button>', 0);
+    $('.product-gallery').slick('slickAdd', '<button class="arrow-slick3 next-slick3"><i class="fa fa-angle-right" aria-hidden="true"></i></button>', $('.product-gallery').slick('getSlick').slideCount - 1);
+
+
+    $('.product-gallery').slick('refresh');
   });
 
   $('.js-hide-modal1').on('click', function() {
