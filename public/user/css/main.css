@@ -161,7 +161,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   height: 38px;
   bottom: 0px;
   right: 40px;
-  background-color: #717fe0;
+  background-color: #B51828;
   opacity: 0.5;
   justify-content: center;
   align-items: center;
@@ -181,7 +181,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 .btn-back-to-top:hover {
   opacity: 1;
-  background-color: #717fe0;
+  background-color: #FA5065;
 }
 
 @media (max-width: 575px) {
@@ -261,7 +261,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .topbar-mobile li {
   padding: 8px 20px;
   border-top: 1px solid rgba(255,255,255,0.05);
-  background-color: #222;
+  background-color: #f5efeb;
 }
 
 
@@ -732,7 +732,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .main-menu-m {
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #717fe0;
+  background-color: #444;
 }
 
 .main-menu-m > li > a {
@@ -3343,4 +3343,17 @@ input.num-product::-webkit-inner-spin-button {
     padding: 20px;
   }
 
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    color: #222; 
+    background-color: #FFFFFF
+    
+}
+.pagination > li.active > a,
+.pagination > li.active > span {
+    color: #FFFFFF !important; 
+    background-color: #F74877!important;
+    border-color: #F74877!important;
 }

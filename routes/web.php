@@ -4,11 +4,12 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\user\AboutController;
 use App\Http\Controllers\user\ContactController;
 use App\Http\Controllers\user\HomeController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Route::group(['prefix' => ''], function () {
     Route::get('/',[HomeController::class, 'index']);
