@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,5 +23,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        $data = [
+            'categories' => Category::get(),
+            'products' => Product::with('images')->paginate(12),
+        ];
+
+        View::share('sharedData', $data);
     }
 }
