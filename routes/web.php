@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\user\ProductController;
 use App\Http\Controllers\user\AboutController;
+use App\Http\Controllers\user\CategoryController;
 use App\Http\Controllers\user\ContactController;
 use App\Http\Controllers\user\HomeController;
 use App\Models\Category;
@@ -17,4 +18,5 @@ Route::group(['prefix' => ''], function () {
     Route::get('/about-us', [AboutController::class, 'index']);
     Route::get('/contact', [ContactController::class, 'index']);
     Route::get('/product', [ProductController::class, 'index']);
+    Route::get('/product/{category_name}/{category_id}', [CategoryController::class, 'index']);
 });

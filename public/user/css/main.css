@@ -1737,8 +1737,8 @@ button.mfp-close {
 
 .show-search:hover:after,
 .show-filter:hover:after {
-  background-color: #717fe0;
-  border-color: #717fe0;
+  background-color: #B51828;
+  border-color: #B51828;
 }
 
 /*---------------------------------------------*/
@@ -1754,13 +1754,13 @@ button.mfp-close {
 }
 
 .filter-link:hover {
-  color: #6c7ae0;
-  border-bottom: 1px solid #6c7ae0;
+  color: #F74877;
+  border-bottom: 1px solid #F74877;
 }
 
 .filter-link-active {
-  color: #6c7ae0;
-  border-bottom: 1px solid #6c7ae0;
+  color: #F74877;
+  border-bottom: 1px solid #F74877;
 }
 
 @media (max-width: 767px) {
