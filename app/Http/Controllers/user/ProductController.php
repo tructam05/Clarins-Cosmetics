@@ -17,4 +17,12 @@ class ProductController extends Controller
     ];
     return view('user/product')->with($data);
   }
+  public function product_detail($product_id)
+  {
+    $data = [
+      'product' => Product::with('images')->find($product_id),
+      'categories' => Category::get()
+    ];
+    return view('user/product_detail')->with($data);
+  }
 }

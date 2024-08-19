@@ -497,7 +497,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   color: #fff;
   line-height: 15px;
   text-align: center;
-
+  
   display: block;
   position: absolute;
   top: -7px;
@@ -505,7 +505,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   min-width: 15px;
   height: 15px;
   padding: 0 3px;
-  background-color: #717fe0;
+  background-color: red;
+  border-radius: 30%;
 }
 
 /*---------------------------------------------*/
@@ -2417,7 +2418,11 @@ input.num-product::-webkit-inner-spin-button {
   line-height: 1.1;
   text-transform: uppercase;
 }
-
+.ltext-204 {
+  font-family: PlayfairDisplay-Regular;
+  font-size: 60px;
+  line-height: 1.2857;
+}
 
 
 /*==================================================================
