@@ -19,4 +19,5 @@ Route::group(['prefix' => ''], function () {
     Route::get('/contact', [ContactController::class, 'index']);
     Route::get('/product', [ProductController::class, 'index']);
     Route::get('/product/{category_name}/{category_id}', [CategoryController::class, 'index']);
+    Route::get('/product/{product_id}', [ProductController::class, 'product_detail']);
 });
