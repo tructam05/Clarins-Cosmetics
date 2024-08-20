@@ -11,22 +11,28 @@
     <div class="container">
       <div class="flex-w flex-tr">
         <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-          <form>
+          <form action="{{url('/contact/submit')}}" method="post">
+            @csrf
             <h4 class="mtext-105 cl2 txt-center p-b-10">
               Can't find the answer to your question, the Clarins Customer Service is at your disposal:
             </h4>
             <h5 class="stext-106 txt-center p-b-30">Complete the form below and we will respond within 48 business hours</h5>
 
             <div class="bor8 m-b-20 how-pos4-parent">
-              <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
-              <img class="how-pos4 pointer-none" src="{{asset('user')}}/images/icons/icon-email.png" alt="ICON">
+              <input class="stext-111 cl2 plh3 size-116  p-lr-30" required type="text" name="name" placeholder="Your Name">
+            </div>
+            <div class="bor8 m-b-20 how-pos4-parent">
+              <input class="stext-111 cl2 plh3 size-116  p-lr-30" required type="text" name="email" placeholder="Your Email Address">
+            </div>
+            <div class="bor8 m-b-20 how-pos4-parent">
+              <input class="stext-111 cl2 plh3 size-116  p-lr-30" required type="text" name="phone" placeholder="Your Phone Number">
             </div>
 
             <div class="bor8 m-b-30">
-              <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
+              <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" required name="question" placeholder="How Can We Help?"></textarea>
             </div>
 
-            <button class="flex-c-m stext-101 cl0 size-121 bg10 bor20 hov-btn2 p-lr-15 trans-04 pointer">
+            <button class="flex-c-m stext-101 cl0 size-121 bg10 bor20 hov-btn2 p-lr-15 trans-04 pointer" type="submit">
               Submit
             </button>
           </form>

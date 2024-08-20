@@ -440,7 +440,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*---------------------------------------------*/
 .main-menu > li:hover > a {
   text-decoration: none;
-  color: #6c7ae0;
+  color: #B51828;
 }
 
 .main-menu > li:hover > .sub-menu {
@@ -458,7 +458,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .sub-menu > li:hover > a {
-  color: #6c7ae0;
+  color: #B51828;
   text-decoration: none;
 }
 

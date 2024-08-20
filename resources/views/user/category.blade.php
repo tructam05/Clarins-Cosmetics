@@ -17,7 +17,7 @@
             All Products
           </a>
           @foreach($categories as $category)
-          <a href="{{url('/product/'.$category->name.'/'.$category->id)}}" class="stext-106 cl8 hov1 bor3 trans-04 m-r-20 m-tb-5">
+          <a href="{{url('/category/'.$category->name.'/'.$category->id)}}" class="stext-106 cl8 hov1 bor3 trans-04 m-r-20 m-tb-5">
             {{$category->name}}
           </a>
           @endforeach
@@ -87,7 +87,7 @@
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                <a href="{{url('product/'.$product->name.'/'.$product->id)}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                   {{$product->name}}
                 </a>
 

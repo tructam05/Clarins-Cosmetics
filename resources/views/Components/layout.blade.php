@@ -71,7 +71,7 @@
                 <a href="{{url('/product')}}">Product</a>
                 <ul class="sub-menu">
                   @foreach($sharedData['categories'] as $category)
-                  <li><a href="{{url('/product/'.$category->name.'/'.$category->id)}}">{{$category->name}}</a></li>
+                  <li><a href="{{url('/category/'.$category->name.'/'.$category->id)}}">{{$category->name}}</a></li>
                   @endforeach
                 </ul>
               </li>
@@ -103,7 +103,7 @@
             <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
               <i class="zmdi zmdi-favorite-outline"></i>
             </a>
-            <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 " >
+            <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
               <i class="zmdi zmdi-account"></i>
             </a>
           </div>
@@ -292,54 +292,13 @@
           </h4>
 
           <ul>
+            @foreach($sharedData['categories'] as $category)
             <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Facial Cleansers
+              <a href="{{url('/category/'.$category->name.'/'.$category->id)}}" class="stext-107 cl10 hov-cl1 trans-04">
+                {{$category->name}}
               </a>
             </li>
-
-            <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Tonners
-              </a>
-            </li>
-
-            <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Face Serums
-              </a>
-            </li>
-
-            <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Eye Cares
-              </a>
-            </li>
-            <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Face Treatment Oils
-              </a>
-            </li>
-            <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Make up
-              </a>
-            </li>
-            <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Body
-              </a>
-            </li>
-            <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Self Tanning
-              </a>
-            </li>
-            <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Men
-              </a>
-            </li>
+            @endforeach
           </ul>
         </div>
 
@@ -368,7 +327,7 @@
             </li>
 
             <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
+              <a href="{{url('/contact')}}" class="stext-107 cl10 hov-cl1 trans-04">
                 Contact Us
               </a>
             </li>
@@ -387,15 +346,15 @@
           </p>
 
           <div class="p-t-27">
-            <a href="#" class="fs-18 cl10 hov-cl1 trans-04 m-r-16">
+            <a href="https://www.facebook.com/ClarinsUS/" class="fs-18 cl10 hov-cl1 trans-04 m-r-16">
               <i class="fa fa-facebook"></i>
             </a>
 
-            <a href="#" class="fs-18 cl10 hov-cl1 trans-04 m-r-16">
+            <a href="https://www.instagram.com/clarinsusa/" class="fs-18 cl10 hov-cl1 trans-04 m-r-16">
               <i class="fa fa-instagram"></i>
             </a>
 
-            <a href="#" class="fs-18 cl10 hov-cl1 trans-04 m-r-16">
+            <a href="https://www.youtube.com/channel/UC_7lNVaR-bVxeQwPRta5RyQ" class="fs-18 cl10 hov-cl1 trans-04 m-r-16">
               <i class="fa fa-youtube"></i>
             </a>
           </div>
