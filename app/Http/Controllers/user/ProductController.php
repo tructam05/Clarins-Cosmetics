@@ -5,7 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
-
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -13,7 +13,8 @@ class ProductController extends Controller
   {
     $data = [
       'products' => Product::with('images')->paginate(12),
-      'categories' => Category::get()
+      'categories' => Category::get(),
+      ''
     ];
     return view('user/product')->with($data);
   }
@@ -27,5 +28,12 @@ class ProductController extends Controller
     
     ];
     return view('user/product_detail')->with($data);
+  }
+  public function sort(Request $request)
+  {
+    $data = [
+      
+    ];
+    return view('user/product')->with($data);
   }
 }

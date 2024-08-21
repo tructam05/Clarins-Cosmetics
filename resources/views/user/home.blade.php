@@ -34,7 +34,14 @@
     </div>
   </section>
 
-
+  <section class="bg-img1 txt-center p-lr-15 p-t-92 p-b-30">
+    <h2 class="ltext-201 cl2 txt-center">
+      Your skin. Our expertise.
+    </h2>
+    <h4 class="mtext-105 cl2 txt-center p-tb-10">
+      DISCOVER OUR PLANT-POWERED FORMULAS
+    </h4>
+  </section>
   <!-- Banner -->
   <div class="sec-banner bg0 p-t-80 p-b-50">
     <div class="container">
@@ -44,7 +51,7 @@
           <div class="block1 wrap-pic-w">
             <img src="{{asset('user')}}/images/CBA_HP_Highlights-268x476_FACE-02.jpg" alt="IMG-BANNER">
 
-            <a href="{{url('/product/Face Cleansers/1')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+            <a href="{{url('category/Face Cleansers/1')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
               <div class="block1-txt-child1 flex-col-l">
                 <span class="block1-name ltext-102 trans-04 p-b-8">
                   FACE CLEANSERS
@@ -65,7 +72,7 @@
           <div class="block1 wrap-pic-w">
             <img src="{{asset('user')}}/images/Highlight_MAKE_UP_GENERIC_2024_StillLifeFoundation.jpg" alt="IMG-BANNER">
 
-            <a href="{{url('/product/Makeup/6')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+            <a href="{{url('/category/Makeup/6')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
               <div class="block1-txt-child1 flex-col-l">
                 <span class="block1-name ltext-102 trans-04 p-b-8">
                   MAKE-UP
@@ -86,7 +93,7 @@
           <div class="block1 wrap-pic-w">
             <img src="{{asset('user')}}/images/CBA_HP_Highlights-268x476_BODY-01.jpg" alt="IMG-BANNER">
 
-            <a href="{{url('/product/Body/7')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+            <a href="{{url('/category/Body/7')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
               <div class="block1-txt-child1 flex-col-l">
                 <span class="block1-name ltext-102 trans-04 p-b-8">
                   BODY CARE
@@ -106,8 +113,44 @@
   </div>
 
 
-  <!-- Product -->
-  <x-productList></x-productList>
+  <section class="bg11 txt-center p-lr-15 p-tb-30 m-b-30">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 col-lg-8">
+          <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+            <h3 class="mtext-111 cl2 p-b-40">
+              {{$famous_product->name}}
+            </h3>
+
+            <span class="fs-25 cl13 ">
+              <i class="zmdi zmdi-star"></i>
+              <i class="zmdi zmdi-star"></i>
+              <i class="zmdi zmdi-star"></i>
+              <i class="zmdi zmdi-star"></i>
+              <i class="zmdi zmdi-star"></i>
+            </span>
+
+            <p class="mtext-108 cl8 p-tb-40">
+              {{$famous_product->short_description}}
+            </p>
+            <a href="{{url('/product/Hydra-Essentiel Hydrating Bi-Phase Serum/24')}}" class="flex-c-m stext-101 cl0 size-101 bg10 bor2 hov-btn2 p-lr-15 trans-04 m-lr-200 m-t-50">
+              See for yourself
+            </a>
+          </div>
+        </div>
+
+        <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
+          <div class=" ">
+            <div class="hov-img0">
+              @foreach($famous_product->images->where('is_primary','1') as $image)
+              <img src="{{ asset('user/images/product/'.$image->path)}}" alt="{{$famous_product->name}}">
+              @endforeach
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
 
 </x-layout>
 <script>
