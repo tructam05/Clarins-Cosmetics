@@ -12,7 +12,8 @@ class HomeController extends Controller
   {
     $data = [
       'products' => Product::with('images')->paginate(12),
-      'categories' => Category::get()
+      'categories' => Category::get(),
+      'famous_product' => Product::with('images')->find(24)
     ];
     return view('user/home')->with($data);
   }

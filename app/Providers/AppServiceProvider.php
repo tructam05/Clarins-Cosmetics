@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         $data = [
             'categories' => Category::get(),
             'products' => Product::with('images')->paginate(12),
-            'all_products' => Product::get()
+            'all_products' => Product::get(),
         ];
 
         View::share('sharedData', $data);
