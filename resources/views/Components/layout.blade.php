@@ -103,7 +103,7 @@
             <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
               <i class="zmdi zmdi-favorite-outline"></i>
             </a>
-            <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
+            <a href="{{url('/account')}}" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
               <i class="zmdi zmdi-account"></i>
             </a>
           </div>
@@ -309,20 +309,14 @@
 
           <ul>
             <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
+              <a href="{{url('/account')}}" class="stext-107 cl10 hov-cl1 trans-04">
                 My Account
               </a>
             </li>
 
             <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                Help
-              </a>
-            </li>
-
-            <li class="p-b-10">
-              <a href="#" class="stext-107 cl10 hov-cl1 trans-04">
-                FAQ
+              <a href="{{url('/about-us')}}" class="stext-107 cl10 hov-cl1 trans-04">
+                About Us
               </a>
             </li>
 

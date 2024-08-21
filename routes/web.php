@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\user\ProductController;
 use App\Http\Controllers\user\AboutController;
+use App\Http\Controllers\user\AccountController;
 use App\Http\Controllers\user\CategoryController;
 use App\Http\Controllers\user\ContactController;
 use App\Http\Controllers\user\HomeController;
@@ -15,6 +16,7 @@ Route::group(['prefix' => ''], function () {
     Route::get('/',[HomeController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index']);
     Route::get('/about-us', [AboutController::class, 'index']);
+    Route::get('/account', [AccountController::class, 'index']);
     Route::get('/contact', [ContactController::class, 'index']);
     Route::post('/contact/submit', [ContactController::class, 'submit']);
     Route::get('/product', [ProductController::class, 'index']);
