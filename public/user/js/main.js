@@ -155,7 +155,7 @@
         });
     });
 
-    var isotopeButton = $('.filter-tope-group button');
+    var isotopeButton = $('.filter-tope-group a');
 
     $(isotopeButton).each(function(){
         $(this).on('click', function(){

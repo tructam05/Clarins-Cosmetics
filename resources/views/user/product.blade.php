@@ -28,13 +28,17 @@
 
         <!-- Search product -->
         <div class="dis-none panel-search w-full p-t-10 p-b-15">
-          <div class="bor8 dis-flex p-l-15">
-            <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-              <i class="zmdi zmdi-search"></i>
-            </button>
 
-            <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
-          </div>
+          <form action="{{url('/product/search')}}" method="get">
+            <div class="bor8 dis-flex p-l-15">
+              <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+                <i class="zmdi zmdi-search"></i>
+              </button>
+
+              <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+            </div>
+          </form>
+
         </div>
 
         <!-- Filter -->
@@ -43,13 +47,13 @@
             <div class=" p-lr-15 bg8 bor20">
               <ul>
                 <li class="p-b-6">
-                  <a href="#" class="filter-link stext-106 trans-04 cl2">
+                  <a href="{{url('/product/sort-low-to-high')}}" class="filter-link stext-106 trans-04 cl2">
                     Low to High
                   </a>
                 </li>
 
                 <li class="p-b-6">
-                  <a href="#" class="filter-link stext-106 trans-04 cl2">
+                  <a href="{{url('/product/sort-high-to-low')}}" class="filter-link stext-106 trans-04 cl2">
                     High to Low
                   </a>
                 </li>

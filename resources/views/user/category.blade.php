@@ -13,11 +13,11 @@
     <div class="container">
       <div class="flex-w flex-sb-m p-b-52">
         <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-          <a href="{{url('/product')}}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1">
+          <a href="{{url('/product')}}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
             All Products
           </a>
           @foreach($categories as $category)
-          <a href="{{url('/category/'.$category->name.'/'.$category->id)}}" class="stext-106 cl8 hov1 bor3 trans-04 m-r-20 m-tb-5">
+          <a href="{{url('/category/'.$category->name.'/'.$category->id)}}" class="stext-106 cl8 hov1 bor3 trans-04 m-r-20 m-tb-5 {{($current_category->id == $category->id) ? 'how-active1' : ''}}">
             {{$category->name}}
           </a>
           @endforeach
@@ -37,13 +37,15 @@
 
         <!-- Search product -->
         <div class="dis-none panel-search w-full p-t-10 p-b-15">
-          <div class="bor8 dis-flex p-l-15">
-            <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-              <i class="zmdi zmdi-search"></i>
-            </button>
+          <form action="{{url('/product/search')}}" method="get">
+            <div class="bor8 dis-flex p-l-15">
+              <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+                <i class="zmdi zmdi-search"></i>
+              </button>
 
-            <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
-          </div>
+              <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+            </div>
+          </form>
         </div>
 
         <!-- Filter -->
@@ -52,13 +54,13 @@
             <div class=" p-lr-15 bg8 bor20">
               <ul>
                 <li class="p-b-6">
-                  <a href="#" class="filter-link stext-106 trans-04 cl2">
+                  <a href="?sort=asc" class="filter-link stext-106 trans-04 cl2">
                     Low to High
                   </a>
                 </li>
 
                 <li class="p-b-6">
-                  <a href="#" class="filter-link stext-106 trans-04 cl2">
+                  <a href="?sort=desc" class="filter-link stext-106 trans-04 cl2">
                     High to Low
                   </a>
                 </li>
@@ -70,6 +72,81 @@
 
       <div class="row isotope-grid">
 
+        @if(request()->get('sort') == 'asc')
+        @foreach($products->sortBy('price') as $product)
+        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item category_id{{$product->category_id}}">
+          <!-- Block2 -->
+          <div class="block2">
+            <div class="block2-pic hov-img0">
+              @foreach($product->images->where('is_primary','1') as $image)
+              <img src="{{ asset('user/images/product/'.$image->path)}}" alt="{{$product->name}}">
+              @endforeach
+
+              <a href="" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn2 p-lr-15 trans-04 js-show-modal1"
+                data-product="{{ json_encode($product) }}">
+                Quick View
+              </a>
+            </div>
+
+            <div class="block2-txt flex-w flex-t p-t-14">
+              <div class="block2-txt-child1 flex-col-l ">
+                <a href="{{url('product/'.$product->name.'/'.$product->id)}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                  {{$product->name}}
+                </a>
+
+                <span class="stext-105 cl3">
+                  ${{ number_format($product->price, 2) }}
+                </span>
+              </div>
+
+              <div class="block2-txt-child2 flex-r p-t-3">
+                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                  <img class="icon-heart1 dis-block trans-04" src="{{asset('user')}}/images/icons/icon-heart-01.png" alt="ICON">
+                  <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('user')}}/images/icons/icon-heart-02.png" alt="ICON">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        @endforeach
+        @elseif(request()->get('sort') == 'desc')
+        @foreach($products->sortByDesc('price') as $product)
+        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item category_id{{$product->category_id}}">
+          <!-- Block2 -->
+          <div class="block2">
+            <div class="block2-pic hov-img0">
+              @foreach($product->images->where('is_primary','1') as $image)
+              <img src="{{ asset('user/images/product/'.$image->path)}}" alt="{{$product->name}}">
+              @endforeach
+
+              <a href="" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn2 p-lr-15 trans-04 js-show-modal1"
+                data-product="{{ json_encode($product) }}">
+                Quick View
+              </a>
+            </div>
+
+            <div class="block2-txt flex-w flex-t p-t-14">
+              <div class="block2-txt-child1 flex-col-l ">
+                <a href="{{url('product/'.$product->name.'/'.$product->id)}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                  {{$product->name}}
+                </a>
+
+                <span class="stext-105 cl3">
+                  ${{ number_format($product->price, 2) }}
+                </span>
+              </div>
+
+              <div class="block2-txt-child2 flex-r p-t-3">
+                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                  <img class="icon-heart1 dis-block trans-04" src="{{asset('user')}}/images/icons/icon-heart-01.png" alt="ICON">
+                  <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('user')}}/images/icons/icon-heart-02.png" alt="ICON">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        @endforeach
+        @else
         @foreach($products as $product)
         <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item category_id{{$product->category_id}}">
           <!-- Block2 -->
@@ -106,6 +183,7 @@
           </div>
         </div>
         @endforeach
+        @endif
 
         <!-- Modal1 -->
         <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
