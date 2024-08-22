@@ -88,13 +88,15 @@
 
           <!-- Icon header -->
           <div class="wrap-icon-header flex-w flex-r-m">
-            <div class="bor8 dis-flex p-l-15">
-              <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-                <i class="zmdi zmdi-search"></i>
-              </button>
+            <form action="{{url('/product/search')}}" method="get">
+              <div class="bor8 dis-flex p-l-15">
+                <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+                  <i class="zmdi zmdi-search"></i>
+                </button>
 
-              <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
-            </div>
+                <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+              </div>
+            </form>
 
             <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
               <i class="zmdi zmdi-shopping-cart"></i>
@@ -120,13 +122,15 @@
 
       <!-- Icon header -->
       <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-        <div class="bor8 dis-flex p-l-15">
-          <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-            <i class="zmdi zmdi-search"></i>
-          </button>
+        <form action="{{url('/product/search')}}" method="get">
+          <div class="bor8 dis-flex p-l-15">
+            <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+              <i class="zmdi zmdi-search"></i>
+            </button>
 
-          <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
-        </div>
+            <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+          </div>
+        </form>
 
         <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
           <i class="zmdi zmdi-shopping-cart"></i>
@@ -358,19 +362,14 @@
           <h4 class="stext-301 cl5 p-b-30">
             SIGN UP FOR OUR NEWSLETTER
           </h4>
+          <div class="p-t-18">
+            <button class="flex-c-m stext-101 cl0 size-103 bg10 bor20 hov-btn2 p-lr-15 trans-04">
+              <a href="" class="stext-101 cl0 hov-cl1 trans-04">
+                Sign Up
+              </a>
+            </button>
+          </div>
 
-          <form>
-            <div class="wrap-input1 w-full p-b-4">
-              <input class=" bg0 bor20 plh1 stext-107 cl10 p-t-6 p-b-6 p-l-5 " type="text" name="email" placeholder="*Email">
-              <div class="focus-input1 trans-04"></div>
-            </div>
-
-            <div class="p-t-18">
-              <button class="flex-c-m stext-101 cl0 size-103 bg10 bor20 hov-btn2 p-lr-15 trans-04">
-                Subscribe
-              </button>
-            </div>
-          </form>
         </div>
       </div>
 

@@ -14,7 +14,6 @@ class ProductController extends Controller
     $data = [
       'products' => Product::with('images')->paginate(12),
       'categories' => Category::get(),
-      ''
     ];
     return view('user/product')->with($data);
   }
@@ -29,10 +28,31 @@ class ProductController extends Controller
     ];
     return view('user/product_detail')->with($data);
   }
-  public function sort(Request $request)
+
+  public function sortByDesc()
   {
     $data = [
-      
+      'products' => Product::with('images')->orderBy('price','DESC')->paginate(12),
+      'categories' => Category::get(),
+    ];
+    return view('user/product')->with($data);
+  }
+
+  public function sortByAsc()
+  {
+    $data = [
+      'products' => Product::with('images')->orderBy('price', 'ASC')->paginate(12),
+      'categories' => Category::get(),
+    ];
+    return view('user/product')->with($data);
+  }
+
+  public function search(Request $request)
+  {
+    $searchQuery = $request->input('search-product');
+    $data = [
+      'products' => Product::with('images')->where('name', 'like', '%' . $searchQuery . '%')->paginate(12),
+      'categories' => Category::get(),
     ];
     return view('user/product')->with($data);
   }

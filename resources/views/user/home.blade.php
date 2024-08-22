@@ -11,19 +11,19 @@
         <div class="item-slick1" style="background-image: url({{asset('user')}}/images/CBA_HP_Aspot-Desktop_DS&CREAMS_V2_2024.jpg);">
           <div class="container h-full">
             <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-              <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="0">
+              <div class="layer-slick1 m-t-15 animated visible-false" data-appear="fadeInUp" data-delay="0">
                 <h2 class="ltext-105 cl5  respon1">
                   Double Serum
                 </h2>
               </div>
-              <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="800">
+              <div class="layer-slick1 m-tb-15 animated visible-false" data-appear="fadeInDown" data-delay="800">
                 <span class="ltext-101 cl5 p-t-19 p-b-43 respon2">
                   Global Age Control Serum
                 </span>
               </div>
 
-              <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                <a href="{{url('/product/Double Serum Anti-Aging + Anti-Wrinkle Serum/21')}}" class="flex-c-m stext-101 cl0 size-101 bg10 bor1 hov-btn1 p-lr-15 trans-04">
+              <div class="layer-slick1 m-tb-15 animated visible-false" data-appear="zoomIn" data-delay="1600">
+                <a href="{{url('/product/Double Serum Anti-Aging + Anti-Wrinkle Serum/21')}}" class="flex-c-m stext-101 cl0 size-101 bg10 bor2 hov-btn2 p-lr-15 trans-04">
                   Shop Now
                 </a>
               </div>

@@ -17,9 +17,13 @@ Route::group(['prefix' => ''], function () {
     Route::get('/home', [HomeController::class, 'index']);
     Route::get('/about-us', [AboutController::class, 'index']);
     Route::get('/account', [AccountController::class, 'index']);
+    Route::get('/account/edit-profile', [AccountController::class, 'editProfile']);
     Route::get('/contact', [ContactController::class, 'index']);
     Route::post('/contact/submit', [ContactController::class, 'submit']);
     Route::get('/product', [ProductController::class, 'index']);
+    Route::get('/product/sort-high-to-low', [ProductController::class, 'sortByDesc']);
+    Route::get('/product/sort-low-to-high', [ProductController::class, 'sortByAsc']);
+    Route::get('/product/search', [ProductController::class, 'search']);
     Route::get('/category/{category_name}/{category_id}', [CategoryController::class, 'index']);
     Route::get('/product/{product_name}/{product_id}', [ProductController::class, 'product_detail']);
 });
