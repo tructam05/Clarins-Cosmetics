@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Easiest Way to Add Input Masks to Your Forms</title>
+  <title>Login </title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{asset('user')}}/css/login.css">
@@ -21,15 +21,14 @@
         <span><i class="icon icon-user"></i></span>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control item" id="email" placeholder="Email">
+        <input type="text" class="form-control item" name="email" placeholder="Email">
       </div>
       <div class="form-group">
-        <input type="password" class="form-control item" id="password" placeholder="Password">
+        <input type="password" class="form-control item" name="password" placeholder="Password">
       </div>
       <div class="form-group ">
-
-        <input type="checkbox" class="" id="remember_token" style="margin-left: 5px;">
-        <label for="remember_token" >Remember me </label>
+        <input type="checkbox" class="" name="remember" style="margin-left: 5px;">
+        <label for="remember" >Remember me </label>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-block create-account">Login</button>

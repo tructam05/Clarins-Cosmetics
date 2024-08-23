@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Easiest Way to Add Input Masks to Your Forms</title>
+  <title>Create Account</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{asset('user')}}/css/login.css">
@@ -15,25 +15,28 @@
 
 <body>
   <div class="registration-form">
-    <form action="{{url('new-account')}}">
+    <form action="{{url('new-account')}}" method="post">
       @csrf
       <div class="form-icon">
         <span><i class="icon icon-user"></i></span>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control item" id="username" placeholder="Username">
+        <input type="text" class="form-control item" name="name" placeholder="Username">
       </div>
       <div class="form-group">
-        <input type="password" class="form-control item" id="password" placeholder="Password">
+        <input type="password" class="form-control item" name="password" placeholder="Password">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control item" id="email" placeholder="Email">
+        <input type="text" class="form-control item" name="email" placeholder="Email">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control item" id="phone-number" placeholder="Phone Number">
+        <input type="text" class="form-control item" name="phone" placeholder="Phone Number">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control item" id="birth-date" placeholder="Birth Date">
+        <input type="text" class="form-control item" name="age" placeholder="Age">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control item" name="address" placeholder="Address">
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-block create-account">Create Account</button>
