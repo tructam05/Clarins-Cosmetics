@@ -6,6 +6,7 @@ use App\Http\Controllers\user\AccountController;
 use App\Http\Controllers\user\CategoryController;
 use App\Http\Controllers\user\ContactController;
 use App\Http\Controllers\user\HomeController;
+use App\Http\Controllers\user\LoginController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -26,4 +27,9 @@ Route::group(['prefix' => ''], function () {
     Route::get('/product/search', [ProductController::class, 'search']);
     Route::get('/category/{category_name}/{category_id}', [CategoryController::class, 'index']);
     Route::get('/product/{product_name}/{product_id}', [ProductController::class, 'product_detail']);
+
+    Route::get('/login', [LoginController::class, 'index']);
+    Route::post('/login/submit', [LoginController::class, 'login']);
+    Route::post('/new-account', [LoginController::class, 'signUp']);
+    Route::get('/create-account', [LoginController::class, 'createAccount']);
 });
