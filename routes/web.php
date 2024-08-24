@@ -17,7 +17,7 @@ Route::group(['prefix' => ''], function () {
     Route::get('/',[HomeController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index']);
     Route::get('/about-us', [AboutController::class, 'index']);
-    Route::get('/account', [AccountController::class, 'index']);
+    Route::get('/account', [AccountController::class, 'index'])->middleware('auth');
     Route::get('/account/edit-profile', [AccountController::class, 'editProfile']);
     Route::get('/contact', [ContactController::class, 'index']);
     Route::post('/contact/submit', [ContactController::class, 'submit']);
@@ -28,8 +28,9 @@ Route::group(['prefix' => ''], function () {
     Route::get('/category/{category_name}/{category_id}', [CategoryController::class, 'index']);
     Route::get('/product/{product_name}/{product_id}', [ProductController::class, 'product_detail']);
 
-    Route::get('/login', [LoginController::class, 'index']);
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login/submit', [LoginController::class, 'login']);
+    Route::post('/logout', [LoginController::class, 'logout']);
     Route::post('/new-account', [LoginController::class, 'signUp']);
     Route::get('/create-account', [LoginController::class, 'createAccount']);
 });

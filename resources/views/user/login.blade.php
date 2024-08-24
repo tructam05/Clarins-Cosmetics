@@ -15,6 +15,7 @@
 
 <body>
   <div class="registration-form">
+
     <form action="{{url('login/submit')}}" method="post">
       @csrf
       <div class="form-icon">
@@ -28,12 +29,22 @@
       </div>
       <div class="form-group ">
         <input type="checkbox" class="" name="remember" style="margin-left: 5px;">
-        <label for="remember" >Remember me </label>
+        <label for="remember">Remember me </label>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-block create-account">Login</button>
       </div>
+      @if($errors->any())
+      <div class="form-group p-3">
+        <ul>
+          @foreach($errors->all() as $error)
+          <li>{{$error}}</li>
+          @endforeach
+        </ul>
+      </div>
+      @endif
     </form>
+
     <div class="social-media">
       <h5>New to Clarins ?</h5>
       <button class="btn btn-block create-account"><a href="{{url('/create-account')}}" style="color: white;">Create Account</a></button>

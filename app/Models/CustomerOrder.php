@@ -12,6 +12,7 @@ class CustomerOrder extends Model
   public $fillable = [
     'customer_id',
     'payment',
+    'total',
     'status',
     'created_at',
     'updated_at'
