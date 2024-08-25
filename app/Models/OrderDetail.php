@@ -18,4 +18,14 @@ class OrderDetail extends Model
     'created_at',
     'updated_at'
   ];
+  public function customerOrder()
+    {
+        return $this->belongsTo(CustomerOrder::class, 'order_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+
+    }
 }

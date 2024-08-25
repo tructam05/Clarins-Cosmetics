@@ -364,7 +364,7 @@
           </h4>
           <div class="p-t-18">
             <button class="flex-c-m stext-101 cl0 size-103 bg10 bor20 hov-btn2 p-lr-15 trans-04">
-              <a href="" class="stext-101 cl0 hov-cl1 trans-04">
+              <a href="{{url('create-account')}}" class="stext-101 cl0 hov-cl1 trans-04">
                 Sign Up
               </a>
             </button>

@@ -1,52 +1,72 @@
 <x-layout>
-  <section class="bg0 p-t-200 p-b-120">
-    <div class="container">
-      <div class="bg0 bor2">
-        <h1 class="ltext-203 cl8 txt-center p-t-50">
-          Edit Profile
-        </h1>
-
-        <div class="row p-all-80">
-          <div class="order-md-2 col-md-7 col-lg-8 p-b-30">
-            <table>
-              <tr>
-                <td>Name</td>
-                <td><input type="text" name="name" id="" value="{{$account->name}}"></td>
-              </tr>
-              <tr>
-                <td>Age</td>
-                <td><input type="text" name="age" id="" value="{{$account->age}}"></td>
-              </tr>
-              <tr>
-                <td>Phone</td>
-                <td><input type="text" name="phone" id="" value="{{$account->phone}}"></td>
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td><input type="text" name="email" id="" value="{{$account->email}}"></td>
-              </tr>
-              <tr>
-                <td>Address</td>
-                <td><input type="text" name="address" id="" value="{{$account->address}}"></td>
-              </tr>
-            </table>
-          </div>
-
-          <div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
-            <div class="">
-              <div class="hov-img0 bor0">
-                <img src="{{asset('user')}}/images/La-plus-proche-de-ses-clients.jpg" alt="IMG">
-              </div>
-              <div class="flex-col-c-t m-t-30">
-                <label for="avatar" class="m-b-15">Change the Avatar</label>
-                <input type="file" name="avatar" id="avatar">
+  <div class="container m-t-100">
+    <div class="main-body">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <img src="{{asset('user/images/'.$customer->avatar)}}" alt="Admin" class="rounded-circle" width="150">
+                <div class="mt-3">
+                  <h4>{{$customer->name}}</h4>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-
+        <div class="col-lg-8 m-b-50">
+          <div class="card">
+            <div class="card-body">
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Full Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="John Doe">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="john@example.com">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Phone</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="(239) 816-9029">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Mobile</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="(320) 380-4539">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Address</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="button" class="btn btn-primary px-4" value="Save Changes">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 </x-layout>

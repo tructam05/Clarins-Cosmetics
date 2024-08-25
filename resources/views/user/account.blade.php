@@ -1,110 +1,102 @@
 <x-layout>
-  <section class="bg0 p-t-200 p-b-120">
-    <div class="container">
-      <div class="bg0 bor2">
-        <h1 class="ltext-203 cl8 txt-center p-t-50">
-          My Account {{$customer->id}}
-        </h1>
-
-        <div class="row p-all-40">
-          <div class="order-md-2 col-md-7 col-lg-8 p-b-30">
-
-            <div class="tab01">
-              <!-- Nav tabs -->
-              <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item p-b-10">
-                  <a class="nav-link mtext-106 hov1 bor3 active" data-toggle="tab" href="#all" role="tab">All</a>
-                </li>
-
-                <li class="nav-item p-b-10">
-                  <a class="nav-link mtext-106 hov1 bor3" data-toggle="tab" href="#to_receive" role="tab">To Receive</a>
-                </li>
-
-                <li class="nav-item p-b-10">
-                  <a class="nav-link mtext-106 hov1 bor3" data-toggle="tab" href="#completed" role="tab">Completed</a>
-                </li>
-              </ul>
-
-              <!-- Tab panes -->
-              <div class="tab-content p-t-43">
-                <!-- - -->
-                <div class="tab-pane fade show active" id="all" role="tabpanel">
-                  <div class="row bg2 m-t-10 bor2">
-                    <div class="col-sm-10 col-md-8 col-lg-8 m-lr-auto p-tb-15">
-                      <div class="mtext-108 cl2 w-full p-l-15 m-tb-5">{{$customer->email}}</div>
-                      <div class="mtext-108 cl2 w-full p-l-15 m-tb-5">x{{$customer->age}}</div>
-                    </div>
-                    <div class="col-sm-2 col-md-4 col-lg-4 m-lr-auto p-tb-15">
-                      <div class="ltext-101 cl2 flex-c ">{{$customer->phone}}</div>
-                    </div>
-                  </div>
-                  <div class="row bg2 m-t-10 bor2">
-                    <div class="col-sm-10 col-md-8 col-lg-8 m-lr-auto p-tb-15">
-                      <div class="mtext-108 cl2 w-full p-l-15 m-tb-5">{{$customer->email}}</div>
-                      <div class="mtext-108 cl2 w-full p-l-15 m-tb-5">x{{$customer->age}}</div>
-                    </div>
-                    <div class="col-sm-2 col-md-4 col-lg-4 m-lr-auto p-tb-15">
-                      <div class="ltext-101 cl2 flex-c ">{{$customer->phone}}</div>
-                    </div>
-                  </div>
-                  <div class="row bg2 m-t-10 bor2">
-                    <div class="col-sm-10 col-md-8 col-lg-8 m-lr-auto p-tb-15">
-                      <div class="mtext-108 cl2 w-full p-l-15 m-tb-5">{{$customer->email}}</div>
-                      <div class="mtext-108 cl2 w-full p-l-15 m-tb-5">x{{$customer->age}}</div>
-                    </div>
-                    <div class="col-sm-2 col-md-4 col-lg-4 m-lr-auto p-tb-15">
-                      <div class="ltext-101 cl2 flex-c ">{{$customer->phone}}</div>
-                    </div>
-                  </div>
-                  <div class="row bg2 m-t-10 bor2">
-                    <div class="col-sm-10 col-md-8 col-lg-8 m-lr-auto p-tb-15">
-                      <div class="mtext-108 cl2 w-full p-l-15 m-tb-5">{{$customer->email}}</div>
-                      <div class="mtext-108 cl2 w-full p-l-15 m-tb-5">x{{$customer->age}}</div>
-                    </div>
-                    <div class="col-sm-2 col-md-4 col-lg-4 m-lr-auto p-tb-15">
-                      <div class="ltext-101 cl2 flex-c ">{{$customer->phone}}</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- - -->
-                <div class="tab-pane fade" id="to_receive" role="tabpanel">
-                  <div class="row">
-                    <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                      to receive
-                    </div>
-                  </div>
-                </div>
-
-                <!-- - -->
-                <div class="tab-pane fade" id="completed" role="tabpanel">
-                  <div class="row">
-                    <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                      completed
-                    </div>
-                  </div>
+  <div class="container m-t-100">
+    <div class="main-body">
+      
+      <div class="row gutters-sm">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <img src="{{asset('user/images/'.$customer->avatar)}}" alt="Admin" class="rounded-circle" width="150">
+                <div class="mt-3">
+                  <h4>{{$customer->name}}</h4>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="order-md-1 col-11 col-md-5 col-lg-4 p-b-30 p-lr-100">
-            <div class="hov-img0 bor0 bor10">
-              <img src="{{asset('user/images/banner-01.jpg')}}" alt="IMG">
-            </div>
-            <div class="flex-c m-t-30">
-              <a href="{{url('/account/edit-profile')}}" class="mtext-106 cl6 hov-cl1">Edit Profile</a>
-            </div>
-            <form method="POST" action="{{url('/logout')}}" class="flex-c m-t-30">
-              @csrf
-              <button type="submit" class="bg2 cl2 bor2 hov-btn1 p-lr-15">Logout</button>
-            </form>
+          <div class="card m-tb-15">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Full Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{$customer->name}}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{$customer->email}}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Phone</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{$customer->phone}}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Address</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{$customer->address}}
+                </div>
+              </div>
+              <hr>
+              <form method="POST" action="{{url('/logout')}}" class="flex-c m-t-30">
 
+                <div class="row">
+                  <div class="col-sm-12">
+                    <a class="btn btn-info " href="{{url('/account/edit-profile')}}">Edit</a>
+                    @csrf
+                    <button type="submit" class="btn btn-info ">Logout</button>
+
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
+        <div class="col-md-8">
+          <h1>Order History</h1>
+          <div class="card m-tb-15">
+            @foreach($orders as $order)
+            <div class="d-flex justify-content-between align-items-center flex-wrap m-t-10 bg11 ">
+              <span class="m-lr-30 m-tb-10">Payment: {{$order->payment}}</span>
+              <span class="m-lr-30 m-tb-10">Status: {{($order->status) ? 'Complete' : 'Process'}}</span>
+              <span class="m-lr-30 m-tb-10">Total: ${{$order->orderDetails->sum('total')}}</span>
+            </div>
+            <ul class="list-group list-group-flush m-tb-5 m-lr-10">
+              @foreach($order->orderDetails as $order_detail)
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap ">
+                @foreach($order_detail->product->images->where('is_primary','1') as $image)
+                <img src="{{asset('user/images/product/'.$image->path)}}" alt="{{$order_detail->product->name}}" width="50" height="50">
+                @endforeach
+                <div class="">{{$order_detail->product->name}} <br> x{{$order_detail->quantity}}</div>
+                <div class="cl2">${{$order_detail->total}}</div>
+              </li>
+              @endforeach
+            </ul>
+            @endforeach
+          </div>
 
 
+
+
+
+        </div>
       </div>
+
     </div>
-  </section>
+  </div>
 </x-layout>
