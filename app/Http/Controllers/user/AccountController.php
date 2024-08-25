@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomerOrder;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
@@ -10,26 +11,33 @@ class AccountController extends Controller
 {
   public function index()
   {
-    $products = DB::table('product')
-    ->join('product_image', 'product.id', '=', 'product_image.product_id')
-    ->join('order_detail', 'product.id', '=', 'order_detail.product_id')
-    ->join('customer_order', 'order_detail.order_id', '=', 'customer_order.id')
-    ->join('users', 'customer_order.customer_id', '=', 'users.id')
-    ->select('product.name', 'product.price', 'product_image.path', 'users.name as customer_name')
+
+    
+    $orders = CustomerOrder::where('customer_id', auth()->user()->id)
+    ->with('orderDetails.product.images')
     ->get();
+
     $data = [
       'customer' => auth()->user(),
-      'products' => $products
+      'orders' => $orders
     ];
-    // dd($products);
+    // dd($order_detail);
+    // dd($orders);
     return view('user/account')->with($data);
   }
 
   public function editProfile()
   {
+    $orders = CustomerOrder::where('customer_id', auth()->user()->id)
+    ->with('orderDetails.product.images')
+    ->get();
+
     $data = [
-      'account' => User::where()
+      'customer' => auth()->user(),
+      'orders' => $orders
     ];
+    // dd($order_detail);
+    // dd($orders);
     return view('user/editProfile')->with($data);
   }
 }
