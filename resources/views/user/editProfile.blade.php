@@ -17,52 +17,68 @@
         <div class="col-lg-8 m-b-50">
           <div class="card">
             <div class="card-body">
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Full Name</h6>
+              <form action="{{url('/update-info')}}" method="post">
+                @csrf
+                <div class="row mb-3">
+                  <div class="col-sm-9 text-secondary">
+                    <input type="hidden" class="form-control" value="{{$customer->id}}" name="id">
+                  </div>
                 </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="John Doe">
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Full Name</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" value="{{$customer->name}}" name="name">
+                  </div>
                 </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Email</h6>
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Age</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" value="{{$customer->age}}" name="age">
+                  </div>
                 </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="john@example.com">
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Email</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" value="{{$customer->email}}" name="email">
+                  </div>
                 </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Phone</h6>
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Phone</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" value="{{$customer->phone}}" name="phone">
+                  </div>
                 </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="(239) 816-9029">
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Address</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" value="{{$customer->address}}" name="address">
+                  </div>
                 </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Mobile</h6>
+                <div class="row mb-3">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Change Avatar</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input type="file" class="form-control" name="avatar">
+                  </div>
                 </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="(320) 380-4539">
+                <div class="row">
+                  <div class="col-sm-3"></div>
+                  <div class="col-sm-9 text-secondary">
+                    <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+                  </div>
                 </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Address</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="button" class="btn btn-primary px-4" value="Save Changes">
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
