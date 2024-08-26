@@ -19,6 +19,7 @@ Route::group(['prefix' => ''], function () {
     Route::get('/about-us', [AboutController::class, 'index']);
     Route::get('/account', [AccountController::class, 'index'])->middleware('auth');
     Route::get('/account/edit-profile', [AccountController::class, 'editProfile']);
+    Route::post('/update-info', [AccountController::class, 'saveChanges']);
     Route::get('/contact', [ContactController::class, 'index']);
     Route::post('/contact/submit', [ContactController::class, 'submit']);
     Route::get('/product', [ProductController::class, 'index']);
