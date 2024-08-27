@@ -1,7 +1,7 @@
 <x-layout>
   <div class="container m-t-100">
     <div class="main-body">
-      
+
       <div class="row gutters-sm">
         <div class="col-md-4 mb-3">
           <div class="card">
@@ -23,6 +23,15 @@
                 </div>
                 <div class="col-sm-9 text-secondary">
                   {{$customer->name}}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Age</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{$customer->age}}
                 </div>
               </div>
               <hr>
