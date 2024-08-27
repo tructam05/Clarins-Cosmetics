@@ -47,23 +47,27 @@ class AccountController extends Controller
   {
     $id = $request->post('id');
     $request->validate([
-      'name' => 'required|string|max:255',
-      'age' => 'required|integer|min:18',
-      'email' => 'required|email|unique:users,email,' . $id,
-      'phone' => 'required|numeric',
-      'address' => 'required',
-      'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+      'email' => 'email',
+      'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
-    $user = User::findOrFail($id);
 
+    $avatarName = 'gallery-04.jpg';
     if ($request->hasFile('avatar')) {
-      $avatarPath = 'user/images/' . time() . '.' . $request->avatar->extension();
-      $request->avatar->move(public_path('user/images'), $avatarPath);
-      $user->avatar = $avatarPath;
+      $avatarName = time() . '.' . $request->file('avatar')->getClientOriginalExtension();
+      $request->file('avatar')->move(public_path('user\images'), $avatarName);
     }
+    
+    $user = User::find($id);
+    $user ->name = $request->post('name');
+    $user ->avatar = $avatarName;
+    $user ->age = $request->post('age');
+    $user ->phone = $request->post('phone');
+    $user ->email = $request->post('email');
+    $user->address = $request->post('address');
+    $user->save();
+    
+    
 
-    $user->update($request->all());
-
-    return redirect('/account')->with('success', 'Cập nhật thông tin thành công.');
+    return redirect('/account');
   }
 }
