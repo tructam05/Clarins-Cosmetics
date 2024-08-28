@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Reviews;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -23,9 +24,10 @@ class ProductController extends Controller
     $current_product = Product::with('images')->find($product_id);
     $data = [
       'product' => Product::with('images')->find($product_id),
-      'category' => Category::find($current_product->category_id)
-    
+      'category' => Category::find($current_product->category_id),
+      'reviews' => Reviews::with('customerId')->where('product_id',$product_id)->where('is_approved',1)->get()
     ];
+    // dd(Reviews::with('customerId')->where('product_id', $product_id)->get());
     return view('user/product_detail')->with($data);
   }
 
@@ -55,5 +57,18 @@ class ProductController extends Controller
       'categories' => Category::get(),
     ];
     return view('user/product')->with($data);
+  }
+
+  public function addReview(Request $request, $product_id)
+  {
+    $review = [
+      'product_id' => $product_id,
+      'customer_id' => auth()->user()->id,
+      'rating' => $request->post('rating'),
+      'content' => $request->input('review'),
+      'is_approved' => 0
+    ];
+    Reviews::create($review);
+    return redirect()->back();
   }
 }

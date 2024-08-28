@@ -26,6 +26,7 @@ Route::group(['prefix' => ''], function () {
     Route::get('/product/sort-high-to-low', [ProductController::class, 'sortByDesc']);
     Route::get('/product/sort-low-to-high', [ProductController::class, 'sortByAsc']);
     Route::get('/product/search', [ProductController::class, 'search']);
+    Route::post('/add-review/{product_id}', [ProductController::class, 'addReview']);
     Route::get('/category/{category_name}/{category_id}', [CategoryController::class, 'index']);
     Route::get('/product/{product_name}/{product_id}', [ProductController::class, 'product_detail']);
 
