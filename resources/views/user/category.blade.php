@@ -174,10 +174,15 @@
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
-                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                  <img class="icon-heart1 dis-block trans-04" src="{{asset('user')}}/images/icons/icon-heart-01.png" alt="ICON">
-                  <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('user')}}/images/icons/icon-heart-02.png" alt="ICON">
+                @if($wishlists->where('product_id',$product->id)->first())
+                <a href="{{url('/remove-from-wishlist/'.$product->id)}}" class="dis-block cl13 hov-cl1 trans-04 p-l-22 p-r-11">
+                  <i class=" zmdi zmdi-favorite"></i>
                 </a>
+                @else
+                <a href="{{url('/add-to-wishlist/'.$product->id)}}" class="dis-block cl4 hov-cl1 trans-04 p-l-22 p-r-11">
+                  <i class=" zmdi zmdi-favorite-outline"></i>
+                </a>
+                @endif
               </div>
             </div>
           </div>

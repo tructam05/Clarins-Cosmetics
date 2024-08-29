@@ -98,11 +98,11 @@
               </div>
             </form>
 
-            <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+            <a href="{{url('/cart')}}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="2">
               <i class="zmdi zmdi-shopping-cart"></i>
-            </div>
+            </a>
 
-            <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+            <a href="{{url('/wishlist')}}" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="{{$sharedData['wishlist_quantity']}}">
               <i class="zmdi zmdi-favorite-outline"></i>
             </a>
             <a href="{{url('/account')}}" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
@@ -132,11 +132,11 @@
           </div>
         </form>
 
-        <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+        <a href="{{url('/cart')}}" class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
           <i class="zmdi zmdi-shopping-cart"></i>
-        </div>
+        </a>
 
-        <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+        <a href="{{url('/wishlist')}}" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="{{$sharedData['wishlist_quantity']}}">
           <i class="zmdi zmdi-favorite-outline"></i>
         </a>
       </div>
@@ -199,7 +199,7 @@
   </header>
 
   <!-- Cart -->
-  <div class="wrap-header-cart js-panel-cart">
+  <!-- <div class="wrap-header-cart js-panel-cart">
     <div class="s-full js-hide-cart"></div>
 
     <div class="header-cart flex-col-l p-l-65 p-r-25">
@@ -281,7 +281,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- content -->
   {{ $slot }}

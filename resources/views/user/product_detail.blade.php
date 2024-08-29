@@ -63,11 +63,17 @@
             <!--  -->
             <div class="p-t-33">
               <div class="flex-w flex-r-m p-b-10">
-                <div class="size-204 flex-w flex-m respon6-next">
+                <div class=" flex-w flex-m respon6-next">
                   <div class="flex-m bor9 p-r-10 m-r-11">
-                    <a href="#" class="fs-14 icon-header-item cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-                      <i class="zmdi zmdi-favorite-outline"></i>
+                    @if($wishlists->where('product_id',$product->id)->first())
+                    <a href="{{url('/remove-from-wishlist/'.$product->id)}}" class="dis-block icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11">
+                      <i class=" zmdi zmdi-favorite"></i>
                     </a>
+                    @else
+                    <a href="{{url('/add-to-wishlist/'.$product->id)}}" class="dis-block icon-header-item cl4 hov-cl1 trans-04 p-l-22 p-r-11">
+                      <i class=" zmdi zmdi-favorite-outline"></i>
+                    </a>
+                    @endif
                   </div>
                   <div class="wrap-num-product flex-w m-r-20 m-tb-10">
                     <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
