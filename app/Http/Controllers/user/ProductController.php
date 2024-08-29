@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Reviews;
+use App\Models\WishList;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,19 +14,21 @@ class ProductController extends Controller
   public function index()
   {
     $data = [
-      'products' => Product::with('images')->paginate(12),
+      'products' => Product::with('images')->where('status',1)->where('status',1)->paginate(12),
       'categories' => Category::get(),
+      'wishlists' => WishList::get()
     ];
     return view('user/product')->with($data);
   }
 
-  public function product_detail($product_name,$product_id)
+  public function productDetail($product_name, $product_id)
   {
-    $current_product = Product::with('images')->find($product_id);
+    $current_product = Product::with('images')->where('status',1)->find($product_id);
     $data = [
-      'product' => Product::with('images')->find($product_id),
+      'product' => Product::with('images')->where('status',1)->find($product_id),
       'category' => Category::find($current_product->category_id),
-      'reviews' => Reviews::with('customerId')->where('product_id',$product_id)->where('is_approved',1)->get()
+      'reviews' => Reviews::with('customerId')->where('product_id', $product_id)->where('is_approved', 1)->get(),
+      'wishlists' => WishList::get()
     ];
     // dd(Reviews::with('customerId')->where('product_id', $product_id)->get());
     return view('user/product_detail')->with($data);
@@ -34,8 +37,9 @@ class ProductController extends Controller
   public function sortByDesc()
   {
     $data = [
-      'products' => Product::with('images')->orderBy('price','DESC')->paginate(12),
+      'products' => Product::with('images')->where('status',1)->orderBy('price', 'DESC')->paginate(12),
       'categories' => Category::get(),
+      'wishlists' => WishList::get()
     ];
     return view('user/product')->with($data);
   }
@@ -43,8 +47,9 @@ class ProductController extends Controller
   public function sortByAsc()
   {
     $data = [
-      'products' => Product::with('images')->orderBy('price', 'ASC')->paginate(12),
+      'products' => Product::with('images')->where('status',1)->orderBy('price', 'ASC')->paginate(12),
       'categories' => Category::get(),
+      'wishlists' => WishList::get()
     ];
     return view('user/product')->with($data);
   }
@@ -53,8 +58,9 @@ class ProductController extends Controller
   {
     $searchQuery = $request->input('search-product');
     $data = [
-      'products' => Product::with('images')->where('name', 'like', '%' . $searchQuery . '%')->paginate(12),
+      'products' => Product::with('images')->where('status',1)->where('name', 'like', '%' . $searchQuery . '%')->paginate(12),
       'categories' => Category::get(),
+      'wishlists' => WishList::get()
     ];
     return view('user/product')->with($data);
   }
@@ -69,6 +75,45 @@ class ProductController extends Controller
       'is_approved' => 0
     ];
     Reviews::create($review);
+    return redirect()->back();
+  }
+
+  public function addToWishlist($product_id)
+  {
+    if (!auth()->check()) {
+      return redirect()->route('login');
+    }
+
+    if (WishList::where('product_id', $product_id)
+      ->where('customer_id', auth()->id())
+      ->exists()
+    ) {
+      return redirect()->back();
+    }
+
+    Wishlist::create([
+      'product_id' => $product_id,
+      'customer_id' => auth()->id()
+    ]);
+    return redirect()->back();
+  }
+
+  public function removeFromWishlist($product_id)
+  {
+    if (!auth()->check()) {
+      return redirect()->route('login');
+    }
+
+    $wishlist = Wishlist::where('product_id', $product_id)
+      ->where('customer_id', auth()->id())
+      ->first();
+
+    if (!$wishlist) {
+      return redirect()->back();
+    }
+
+    $wishlist->delete();
+
     return redirect()->back();
   }
 }

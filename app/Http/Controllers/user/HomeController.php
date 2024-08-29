@@ -11,9 +11,9 @@ class HomeController extends Controller
   public function index()
   {
     $data = [
-      'products' => Product::with('images')->paginate(12),
+      'products' => Product::with('images')->where('status',1)->paginate(12),
       'categories' => Category::get(),
-      'famous_product' => Product::with('images')->find(24),
+      'famous_product' => Product::with('images')->where('status',1)->find(24),
     ];
     return view('user/home')->with($data);
   }

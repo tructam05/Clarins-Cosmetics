@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\WishList;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
             'categories' => Category::get(),
             'products' => Product::with('images')->paginate(12),
             'all_products' => Product::get(),'customer' => auth()->user(),
+            'wishlist_quantity' => WishList::count()
         ];
 
         View::share('sharedData', $data);
