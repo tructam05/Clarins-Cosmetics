@@ -38,11 +38,11 @@ Route::group(['prefix' => ''], function () {
     Route::post('/new-account', [LoginController::class, 'signUp']);
     Route::get('/create-account', [LoginController::class, 'createAccount']);
 
-    Route::get('/wishlist', [WishListController::class, 'index']);
-    Route::get('/add-to-wishlist/{product_id}', [ProductController::class, 'addToWishlist']);
-    Route::get('/remove-from-wishlist/{product_id}', [ProductController::class, 'removeFromWishlist']);
+    Route::get('/wishlist', [WishListController::class, 'index'])->middleware('auth');
+    Route::get('/add-to-wishlist/{product_id}', [ProductController::class, 'addToWishlist'])->middleware('auth');
+    Route::get('/remove-from-wishlist/{product_id}', [ProductController::class, 'removeFromWishlist'])->middleware('auth');
 
-    Route::get('/cart', [CartController::class, 'index']);
+    Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
 
 
 });
