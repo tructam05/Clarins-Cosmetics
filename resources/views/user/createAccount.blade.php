@@ -33,7 +33,7 @@
         <input type="text" class="form-control item" name="phone" placeholder="Phone Number">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control item" name="age" placeholder="Age">
+        <input type="number" class="form-control item" name="age" placeholder="Age">
       </div>
       <div class="form-group">
         <input type="text" class="form-control item" name="address" placeholder="Address">

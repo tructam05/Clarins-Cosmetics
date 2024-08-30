@@ -102,7 +102,8 @@
               <i class="zmdi zmdi-shopping-cart"></i>
             </a>
 
-            <a href="{{url('/wishlist')}}" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="{{$sharedData['wishlist_quantity']}}">
+            <a href="{{url('/wishlist')}}" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" 
+            data-notify="{{(auth()->check()) ? $sharedData['wishlists']->where('customer_id',auth()->user()->id)->count() : '0'}}">
               <i class="zmdi zmdi-favorite-outline"></i>
             </a>
             <a href="{{url('/account')}}" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
@@ -136,7 +137,8 @@
           <i class="zmdi zmdi-shopping-cart"></i>
         </a>
 
-        <a href="{{url('/wishlist')}}" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="{{$sharedData['wishlist_quantity']}}">
+        <a href="{{url('/wishlist')}}" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" 
+        data-notify="{{(auth()->check()) ? $sharedData['wishlists']->where('customer_id',auth()->user()->id)->count() : '0'}}">
           <i class="zmdi zmdi-favorite-outline"></i>
         </a>
       </div>

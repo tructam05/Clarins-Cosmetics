@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             'products' => Product::with('images')->paginate(12),
             'all_products' => Product::get(),
             // 'customer' => auth()->user(),
-            'wishlist_quantity' => WishList::count()
+            'wishlists' => WishList::get()
         ];
 
         View::share('sharedData', $data);

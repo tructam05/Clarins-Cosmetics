@@ -1,0 +1,81 @@
+
+
+/* Responder  */
+.question-display {
+    background-color: #ffffff;
+    border: 1px solid #B51828;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.question-header h3 {
+    background-color: #B51828;
+    color: #ffffff;
+    padding: 15px;
+    margin: -20px -20px 20px -20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.question-content p {
+    margin: 10px 0;
+    color: #333333;
+    font-size: 16px;
+}
+
+.admin-response {
+    margin-top: 20px;
+}
+
+.admin-response label {
+    font-weight: bold;
+    color: #B51828;
+}
+
+.admin-response .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #B51828;
+    border-radius: 5px;
+}
+
+.response-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.response-actions .btn-reply,
+.response-actions .btn-archive,
+.response-actions .btn-delete {
+    background-color: #B51828;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.response-actions .btn-reply:hover,
+.response-actions .btn-archive:hover,
+.response-actions .btn-delete:hover {
+    background-color: #a21624;
+}
+
+
+
+
+.description_product {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 50px; /* Điều chỉnh độ cao theo ý muốn */
+}
+
+.description_product:hover {
+    height: auto;
+}
