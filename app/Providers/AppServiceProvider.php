@@ -27,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
         $data = [
             'categories' => Category::get(),
             'products' => Product::with('images')->paginate(12),
-            'all_products' => Product::get(),'customer' => auth()->user(),
+            'all_products' => Product::get(),
+            // 'customer' => auth()->user(),
             'wishlist_quantity' => WishList::count()
         ];
 

@@ -79,7 +79,7 @@
               </table>
             </div>
 
-            
+
           </div>
         </div>
 
@@ -106,35 +106,42 @@
             <div class="flex-w flex-t bor12 p-t-15 p-b-30">
               <div class="size-208 w-full-ssm">
                 <span class="stext-110 cl2">
-                  Shipping:
+                  Detail:
                 </span>
               </div>
 
               <div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
-                <p class="stext-111 cl6 p-t-2">
+                <!-- <p class="stext-111 cl6 p-t-2">
                   There are no shipping methods available. Please double check your address, or contact us if you need any help.
-                </p>
+                </p> -->
 
-                <div class="p-t-15">
+                <div class="">
                   <span class="stext-112 cl8">
-                    Calculate Shipping
+                    Payment
                   </span>
 
-                  
+                  <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                    <select class="js-select2" name="payment">
+                      <option value="visa">Visa</option>
+                      <option value="paypal">Paypal</option>
+                      <option value="cash">Cash</option>
+                    </select>
+                    <div class="dropDownSelect2"></div>
+                  </div>
 
-                  <div class="bor8 bg0 m-b-12">
+                  <!-- <div class="bor8 bg0 m-b-12">
                     <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="State /  country">
                   </div>
 
                   <div class="bor8 bg0 m-b-22">
                     <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Postcode / Zip">
-                  </div>
+                  </div> -->
 
-                  <div class="flex-w">
+                  <!-- <div class="flex-w">
                     <div class="flex-c-m stext-101 cl0 size-115 bg10 bor2 hov-btn2 p-lr-15 trans-04 pointer">
                       Update Totals
                     </div>
-                  </div>
+                  </div> -->
 
                 </div>
               </div>

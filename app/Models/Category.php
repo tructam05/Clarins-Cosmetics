@@ -14,7 +14,10 @@ class Category extends Model
     'created_at',
     'updated_at'
   ];
-  
+  public function product()
+  {
+    return $this->hasMany(Product::class);
+  }
 }
 
 ?>

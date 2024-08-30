@@ -65,7 +65,7 @@
               <div class="flex-w flex-r-m p-b-10">
                 <div class=" flex-w flex-m respon6-next">
                   <div class="flex-m bor9 p-r-10 m-r-11">
-                    @if($wishlists->where('product_id',$product->id)->first())
+                    @if($wishlists->where('product_id',$product->id)->first() && auth()->user())
                     <a href="{{url('/remove-from-wishlist/'.$product->id)}}" class="dis-block icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11">
                       <i class=" zmdi zmdi-favorite"></i>
                     </a>
