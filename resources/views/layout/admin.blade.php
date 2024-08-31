@@ -56,7 +56,7 @@
         <a href="#" class="nav-link">Feedback Center</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('/home')}}" class="nav-link">Back</a>
+        <a href="{{url('/home')}}" class="nav-link">Back to Website</a>
       </li>
     </ul>
 

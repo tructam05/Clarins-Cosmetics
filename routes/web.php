@@ -46,6 +46,8 @@ Route::group(['prefix' => ''], function () {
     Route::get('/remove-from-wishlist/{product_id}', [ProductController::class, 'removeFromWishlist'])->middleware('auth');
 
     Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
+    Route::post('/cart/checkout', [CartController::class, 'checkout'])->middleware('auth');
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->middleware('auth');
 });
 
 //Admin Route
@@ -56,7 +58,7 @@ Route::group(['prefix' => 'login'], function () {
 });
 
 
-Route::group(['prefix' => 'clarins'], function () {
+Route::group(['prefix' => 'clarins','middleware' => 'auth', 'role:1'], function () {
 
     // admin template interface
     Route::get('/', [CategoryAdminController::class, 'index']);

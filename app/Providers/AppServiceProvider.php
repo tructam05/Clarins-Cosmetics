@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\WishList;
@@ -29,7 +30,8 @@ class AppServiceProvider extends ServiceProvider
             'products' => Product::with('images')->paginate(12),
             'all_products' => Product::get(),
             // 'customer' => auth()->user(),
-            'wishlists' => WishList::get()
+            'wishlists' => WishList::get(),
+            'cart' => Cart::with('cartDetails')->get()
         ];
 
         View::share('sharedData', $data);

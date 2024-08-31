@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -27,6 +28,16 @@ class Product extends Model
   public function orderDetails()
   {
     return $this->hasMany(OrderDetail::class, 'product_id');
+  }
+  public function category()
+  {
+    return $this->belongsTo(Category::class);
+  }
+  use HasFactory;
+
+  public function image()
+  {
+    return $this->hasOne(ProductImage::class, 'product_id')->where('is_primary', 1);
   }
 }
 

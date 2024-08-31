@@ -18,7 +18,7 @@ class AccountController extends Controller
 
 
     $orders = CustomerOrder::where('customer_id', auth()->user()->id)
-      ->with('orderDetails.product.images')
+      ->with('orderDetails.product.images')->orderBy('created_at','DESC')
       ->get();
 
     $data = [
