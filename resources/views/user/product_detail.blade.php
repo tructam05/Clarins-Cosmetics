@@ -62,36 +62,41 @@
 
             <!--  -->
             <div class="p-t-33">
-              <div class="flex-w flex-r-m p-b-10">
-                <div class=" flex-w flex-m respon6-next">
-                  <div class="flex-m bor9 p-r-10 m-r-11">
-                    @if($wishlists->where('product_id',$product->id)->first() && auth()->user())
-                    <a href="{{url('/remove-from-wishlist/'.$product->id)}}" class="dis-block icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11">
-                      <i class=" zmdi zmdi-favorite"></i>
-                    </a>
-                    @else
-                    <a href="{{url('/add-to-wishlist/'.$product->id)}}" class="dis-block icon-header-item cl4 hov-cl1 trans-04 p-l-22 p-r-11">
-                      <i class=" zmdi zmdi-favorite-outline"></i>
-                    </a>
-                    @endif
-                  </div>
-                  <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                      <i class="fs-16 zmdi zmdi-minus"></i>
+              <form action="{{url('/add-to-cart')}}" method="post">
+                @csrf
+                <div class="flex-w flex-r-m p-b-10">
+                  <div class=" flex-w flex-m respon6-next">
+                    <div class="flex-m bor9 p-r-10 m-r-11">
+                      @if($wishlists->where('product_id',$product->id)->first() && auth()->user())
+                      <a href="{{url('/remove-from-wishlist/'.$product->id)}}" class="dis-block icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11">
+                        <i class=" zmdi zmdi-favorite"></i>
+                      </a>
+                      @else
+                      <a href="{{url('/add-to-wishlist/'.$product->id)}}" class="dis-block icon-header-item cl4 hov-cl1 trans-04 p-l-22 p-r-11">
+                        <i class=" zmdi zmdi-favorite-outline"></i>
+                      </a>
+                      @endif
+                    </div>
+                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                      <div class="btn-num-product-down cl8 hov-btn2 trans-04 flex-c-m">
+                        <i class="fs-16 zmdi zmdi-minus"></i>
+                      </div>
+
+                      <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+
+                      <div class="btn-num-product-up cl8 hov-btn2 trans-04 flex-c-m">
+                        <i class="fs-16 zmdi zmdi-plus"></i>
+                      </div>
+                      <input class="" type="hidden" name="product_id" value="{{$product->id}}">
+
                     </div>
 
-                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                      <i class="fs-16 zmdi zmdi-plus"></i>
-                    </div>
+                    <button class="flex-c-m stext-101 cl0 size-101 bg10 bor2 hov-btn2 p-lr-15 trans-04 " type="submit">
+                      Add to cart
+                    </button>
                   </div>
-
-                  <button class="flex-c-m stext-101 cl0 size-101 bg10 bor2 hov-btn2 p-lr-15 trans-04 js-addcart-detail">
-                    Add to cart
-                  </button>
                 </div>
-              </div>
+              </form>
             </div>
 
 
@@ -315,25 +320,30 @@
               </p>
 
               <div class="p-t-33">
-                <div class="flex-w flex-r-m p-b-10">
-                  <div class="size-204 flex-w flex-m respon6-next">
-                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                      <div class="btn-num-product-down cl8 hov-btn2 trans-04 flex-c-m">
-                        <i class="fs-16 zmdi zmdi-minus"></i>
+                <form action="{{url('/add-to-cart')}}" method="post">
+                  @csrf
+                  <div class="flex-w flex-r-m p-b-10">
+                    <div class="size-204 flex-w flex-m respon6-next">
+                      <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                        <div class="btn-num-product-down cl8 hov-btn2 trans-04 flex-c-m">
+                          <i class="fs-16 zmdi zmdi-minus"></i>
+                        </div>
+
+                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+
+                        <div class="btn-num-product-up cl8 hov-btn2 trans-04 flex-c-m">
+                          <i class="fs-16 zmdi zmdi-plus"></i>
+                        </div>
+                        <input class="product-id" type="hidden" name="product_id">
+
                       </div>
 
-                      <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-                      <div class="btn-num-product-up cl8 hov-btn2 trans-04 flex-c-m">
-                        <i class="fs-16 zmdi zmdi-plus"></i>
-                      </div>
+                      <button class="flex-c-m stext-101 cl0 size-101 bg10 bor2 hov-btn2 p-lr-15 trans-04 " type="submit">
+                        Add to cart
+                      </button>
                     </div>
-
-                    <button class="flex-c-m stext-101 cl0 size-101 bg10 bor2 hov-btn2 p-lr-15 trans-04 js-addcart-detail">
-                      Add to cart
-                    </button>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
@@ -348,6 +358,7 @@
     const product = $(this).data('product'); // get product object
     $('.js-modal1').addClass('show-modal1');
     $('.product-name').text(product.name);
+    $('.product-id').val(product.id);
     $('.product-price').text(product.price.toLocaleString('en-US', {
       style: 'currency',
       currency: 'USD'

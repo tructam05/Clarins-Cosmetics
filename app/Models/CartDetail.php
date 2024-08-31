@@ -13,6 +13,17 @@ class CartDetail extends Model
     'cart_id',
     'product_id',
     'quantity',
-    'price'
+    'total',
+    'created_at',
+    'updated_at'
   ];
+  public function product()
+  {
+    return $this->belongsTo(Product::class, 'product_id');
+  }
+
+  public function cart()
+  {
+    return $this->belongsTo(Cart::class, 'cart_id');
+  }
 }

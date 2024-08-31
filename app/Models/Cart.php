@@ -10,11 +10,13 @@ class Cart extends Model
   protected $primarykey = 'id';
   public $timestamps = true;
   public $fillable = [
-    'customer_id'
+    'customer_id',
+    'created_at',
+    'updated_at'
   ];
-  public function cart_details()
+  public function cartDetails()
   {
-    return $this->hasMany(CartDetail::class, 'cart_id');
+    return $this->hasMany(CartDetail::class);
   }
   public function customer()
   {

@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Reviews;
 use App\Models\WishList;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,7 @@ class ProductController extends Controller
   public function index()
   {
     $data = [
-      'products' => Product::with('images')->where('status',1)->where('status',1)->paginate(12),
+      'products' => Product::with('images')->where('status', 1)->paginate(12),
       'categories' => Category::get(),
       'wishlists' => WishList::get()
     ];
@@ -23,21 +24,25 @@ class ProductController extends Controller
 
   public function productDetail($product_name, $product_id)
   {
-    $current_product = Product::with('images')->where('status',1)->find($product_id);
-    $data = [
-      'product' => Product::with('images')->where('status',1)->find($product_id),
-      'category' => Category::find($current_product->category_id),
-      'reviews' => Reviews::with('customerId')->where('product_id', $product_id)->where('is_approved', 1)->get(),
-      'wishlists' => WishList::get()
-    ];
-    // dd(Reviews::with('customerId')->where('product_id', $product_id)->get());
-    return view('user/product_detail')->with($data);
+    try {
+      $current_product = Product::with('images')->where('status', 1)->where('name', $product_name)->find($product_id);
+      $data = [
+        'product' => Product::with('images')->where('status', 1)->where('name', $product_name)->find($product_id),
+        'category' => Category::find($current_product->category_id),
+        'reviews' => Reviews::with('customerId')->where('product_id', $product_id)->where('is_approved', 1)->get(),
+        'wishlists' => WishList::get()
+      ];
+      // dd(Reviews::with('customerId')->where('product_id', $product_id)->get());
+      return view('user/product_detail')->with($data);
+    } catch (Exception $ex) {
+      return view('errors/404');
+    }
   }
 
   public function sortByDesc()
   {
     $data = [
-      'products' => Product::with('images')->where('status',1)->orderBy('price', 'DESC')->paginate(12),
+      'products' => Product::with('images')->where('status', 1)->orderBy('price', 'DESC')->paginate(12),
       'categories' => Category::get(),
       'wishlists' => WishList::get()
     ];
@@ -47,7 +52,7 @@ class ProductController extends Controller
   public function sortByAsc()
   {
     $data = [
-      'products' => Product::with('images')->where('status',1)->orderBy('price', 'ASC')->paginate(12),
+      'products' => Product::with('images')->where('status', 1)->orderBy('price', 'ASC')->paginate(12),
       'categories' => Category::get(),
       'wishlists' => WishList::get()
     ];
@@ -58,7 +63,7 @@ class ProductController extends Controller
   {
     $searchQuery = $request->input('search-product');
     $data = [
-      'products' => Product::with('images')->where('status',1)->where('name', 'like', '%' . $searchQuery . '%')->paginate(12),
+      'products' => Product::with('images')->where('status', 1)->where('name', 'like', '%' . $searchQuery . '%')->paginate(12),
       'categories' => Category::get(),
       'wishlists' => WishList::get()
     ];

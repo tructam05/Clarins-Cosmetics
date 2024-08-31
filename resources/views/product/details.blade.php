@@ -55,7 +55,7 @@
             <div class="row">
                 <div class="col-md-4"> 
                 @foreach ($images as $image)
-                        <img src="{{ asset('admin/images/product/' . $image->path) }}" class="img-fluid" alt="{{ $product->name }}">
+                        <img src="{{ asset('user/images/product/' . $image->path) }}" class="img-fluid" alt="{{ $product->name }}">
                         <br><br><br>                 
 
                 @endforeach
