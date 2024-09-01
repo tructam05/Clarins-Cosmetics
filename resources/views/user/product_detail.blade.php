@@ -263,10 +263,15 @@
                 </div>
 
                 <div class="block2-txt-child2 flex-r p-t-3">
-                  <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                    <img class="icon-heart1 dis-block trans-04" src="{{asset('user')}}/images/icons/icon-heart-01.png" alt="ICON">
-                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('user')}}/images/icons/icon-heart-02.png" alt="ICON">
+                  @if($wishlists->where('product_id',$product->id)->first() && auth()->user())
+                  <a href="{{url('/remove-from-wishlist/'.$product->id)}}" class="dis-block cl13 hov-cl1 trans-04 p-l-22 p-r-11">
+                    <i class=" zmdi zmdi-favorite"></i>
                   </a>
+                  @else
+                  <a href="{{url('/add-to-wishlist/'.$product->id)}}" class="dis-block cl4 hov-cl1 trans-04 p-l-22 p-r-11">
+                    <i class=" zmdi zmdi-favorite-outline"></i>
+                  </a>
+                  @endif
                 </div>
               </div>
             </div>
@@ -365,10 +370,10 @@
     }));
     $('.product-short-description').text(product.short_description);
     console.log(product)
-    const productImages = product.images; // Mảng chứa các đối tượng hình ảnh
-    // Cập nhật nội dung của slider Slick
-    $('.product-gallery').slick('unslick'); // Hủy Slick trước khi cập nhật
-    $('.product-gallery').html(''); // Xóa nội dung hiện tại
+    const productImages = product.images; // Arrays containing image objects
+    // Update the contents of the Slick slider
+    $('.product-gallery').slick('unslick'); // Cancel Slick before updating
+    $('.product-gallery').html(''); // Delete current content
     $.each(productImages, function(index, image) {
       $('.product-gallery').append(`
       <div class="item-slick3" data-thumb="{{ asset('user/images/product/${image.path}') }}">
@@ -378,11 +383,11 @@
       </div>
     `);
     });
-    // Tạo lại các phần tử điều khiển
+    // Recreating control elements
     $('.product-gallery').parent().find('.wrap-slick3-dots').empty();
     $('.product-gallery').parent().find('.wrap-slick3-arrows').empty();
 
-    // Tạo lại dots
+    // Recreating dots
     $('.product-gallery').slick('getSlick').options.dots = true;
     $('.product-gallery').slick('getSlick').options.customPaging = function(slick, index) {
       var portrait = $(slick.$slides[index]).data('thumb');
@@ -390,7 +395,7 @@
 
     };
 
-    // Tạo lại arrows
+    // Recreating arrows
     $('.product-gallery').parent().append('<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>');
     $('.product-gallery').slick('slickAdd', '<button class="arrow-slick3 prev-slick3"><i class="fa fa-angle-left" aria-hidden="true"></i></button>', 0);
     $('.product-gallery').slick('slickAdd', '<button class="arrow-slick3 next-slick3"><i class="fa fa-angle-right" aria-hidden="true"></i></button>', $('.product-gallery').slick('getSlick').slideCount - 1);

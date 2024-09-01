@@ -32,7 +32,7 @@ Route::group(['prefix' => ''], function () {
     Route::get('/product/sort-high-to-low', [ProductController::class, 'sortByDesc']);
     Route::get('/product/sort-low-to-high', [ProductController::class, 'sortByAsc']);
     Route::get('/product/search', [ProductController::class, 'search']);
-    Route::post('/add-review/{product_id}', [ProductController::class, 'addReview']);
+    Route::post('/add-review/{product_id}', [ProductController::class, 'addReview'])->middleware('auth');
     Route::get('/category/{category_name}/{category_id}', [CategoryController::class, 'index']);
     Route::get('/product/{product_name}/{product_id}', [ProductController::class, 'productDetail']);
 
@@ -46,6 +46,7 @@ Route::group(['prefix' => ''], function () {
     Route::get('/remove-from-wishlist/{product_id}', [ProductController::class, 'removeFromWishlist'])->middleware('auth');
 
     Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
+    Route::get('/remove-from-cart/{cartItem_id}', [CartController::class, 'removeFromCart'])->middleware('auth');
     Route::post('/cart/checkout', [CartController::class, 'checkout'])->middleware('auth');
     Route::post('/add-to-cart', [CartController::class, 'addToCart'])->middleware('auth');
 });
@@ -58,7 +59,7 @@ Route::group(['prefix' => 'login'], function () {
 });
 
 
-Route::group(['prefix' => 'clarins','middleware' => 'auth', 'role:1'], function () {
+Route::group(['prefix' => 'clarins','middleware' => ['CheckRole']], function () {
 
     // admin template interface
     Route::get('/', [CategoryAdminController::class, 'index']);
