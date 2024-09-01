@@ -159,16 +159,17 @@
     const product = $(this).data('product'); // get product object
     $('.js-modal1').addClass('show-modal1');
     $('.product-name').text(product.name);
+    $('.product-id').val(product.id);
     $('.product-price').text(product.price.toLocaleString('en-US', {
       style: 'currency',
       currency: 'USD'
     }));
     $('.product-short-description').text(product.short_description);
     console.log(product)
-    const productImages = product.images; // Mảng chứa các đối tượng hình ảnh
-    // Cập nhật nội dung của slider Slick
-    $('.product-gallery').slick('unslick'); // Hủy Slick trước khi cập nhật
-    $('.product-gallery').html(''); // Xóa nội dung hiện tại
+    const productImages = product.images; // Arrays containing image objects
+    // Update the contents of the Slick slider
+    $('.product-gallery').slick('unslick'); // Cancel Slick before updating
+    $('.product-gallery').html(''); // Delete current content
     $.each(productImages, function(index, image) {
       $('.product-gallery').append(`
       <div class="item-slick3" data-thumb="{{ asset('user/images/product/${image.path}') }}">
@@ -178,11 +179,11 @@
       </div>
     `);
     });
-    // Tạo lại các phần tử điều khiển
+    // Recreating control elements
     $('.product-gallery').parent().find('.wrap-slick3-dots').empty();
     $('.product-gallery').parent().find('.wrap-slick3-arrows').empty();
 
-    // Tạo lại dots
+    // Recreating dots
     $('.product-gallery').slick('getSlick').options.dots = true;
     $('.product-gallery').slick('getSlick').options.customPaging = function(slick, index) {
       var portrait = $(slick.$slides[index]).data('thumb');
@@ -190,7 +191,7 @@
 
     };
 
-    // Tạo lại arrows
+    // Recreating arrows
     $('.product-gallery').parent().append('<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>');
     $('.product-gallery').slick('slickAdd', '<button class="arrow-slick3 prev-slick3"><i class="fa fa-angle-left" aria-hidden="true"></i></button>', 0);
     $('.product-gallery').slick('slickAdd', '<button class="arrow-slick3 next-slick3"><i class="fa fa-angle-right" aria-hidden="true"></i></button>', $('.product-gallery').slick('getSlick').slideCount - 1);

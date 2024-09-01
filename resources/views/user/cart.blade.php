@@ -23,15 +23,19 @@
             <div class="wrap-table-shopping-cart">
               <table class="table-shopping-cart">
                 <tr class="table_head">
+                  <th></th>
                   <th class="column-1">Product</th>
-                  <th class="column-2"></th>
-                  <th class="column-3">Price</th>
+                  <th class="column-2 p-l-50">Name</th>
+                  <th class="column-3 p-l-40">Price</th>
                   <th class="column-4">Quantity</th>
                   <th class="column-5">Total</th>
                 </tr>
 
                 @foreach($cart->first()->cartDetails as $cart_detail)
                 <tr class="table_row">
+                  <td class="p-l-15">
+                    <a href="{{url('/remove-from-cart/'.$cart_detail->id)}}" class="flex-c-m stext-101 cl3 size-104 bg2 bor2 hov-btn2 trans-04">Remove</a>
+                  </td>
                   <td class="column-1">
                     <div class="how-itemcart1">
                       @foreach($cart_detail->product->images->where('is_primary',1) as $image)
@@ -40,8 +44,8 @@
                     </div>
                   </td>
                   <td class="column-2">{{$cart_detail->product->name}}</td>
-                  <td class="column-3">$ {{number_format($cart_detail->product->price , 2)}}</td>
-                  <td class="column-4 p-r-25">x{{$cart_detail->quantity}}</td>
+                  <td class="column-3 p-l-40">${{number_format($cart_detail->product->price , 2)}}</td>
+                  <td class="column-4">x{{$cart_detail->quantity}}</td>
                   <td class="column-5">${{number_format( $cart_detail->total , 2 )}}</td>
                 </tr>
                 @endforeach

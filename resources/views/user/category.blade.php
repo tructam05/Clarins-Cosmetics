@@ -234,25 +234,30 @@
                     </p>
 
                     <div class="p-t-33">
-                      <div class="flex-w flex-r-m p-b-10">
-                        <div class="size-204 flex-w flex-m respon6-next">
-                          <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                            <div class="btn-num-product-down cl8 hov-btn2 trans-04 flex-c-m">
-                              <i class="fs-16 zmdi zmdi-minus"></i>
+                      <form action="{{url('/add-to-cart')}}" method="post">
+                        @csrf
+                        <div class="flex-w flex-r-m p-b-10">
+                          <div class="size-204 flex-w flex-m respon6-next">
+                            <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                              <div class="btn-num-product-down cl8 hov-btn2 trans-04 flex-c-m">
+                                <i class="fs-16 zmdi zmdi-minus"></i>
+                              </div>
+
+                              <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+
+                              <div class="btn-num-product-up cl8 hov-btn2 trans-04 flex-c-m">
+                                <i class="fs-16 zmdi zmdi-plus"></i>
+                              </div>
+                              <input class="product-id" type="hidden" name="product_id">
+
                             </div>
 
-                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-                            <div class="btn-num-product-up cl8 hov-btn2 trans-04 flex-c-m">
-                              <i class="fs-16 zmdi zmdi-plus"></i>
-                            </div>
+                            <button class="flex-c-m stext-101 cl0 size-101 bg10 bor2 hov-btn2 p-lr-15 trans-04 js-addcart-detail">
+                              Add to cart
+                            </button>
                           </div>
-
-                          <button class="flex-c-m stext-101 cl0 size-101 bg10 bor2 hov-btn2 p-lr-15 trans-04 js-addcart-detail">
-                            Add to cart
-                          </button>
                         </div>
-                      </div>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -276,16 +281,17 @@
     const product = $(this).data('product'); // get product object
     $('.js-modal1').addClass('show-modal1');
     $('.product-name').text(product.name);
+    $('.product-id').val(product.id);
     $('.product-price').text(product.price.toLocaleString('en-US', {
       style: 'currency',
       currency: 'USD'
     }));
     $('.product-short-description').text(product.short_description);
     console.log(product)
-    const productImages = product.images; // Mảng chứa các đối tượng hình ảnh
-    // Cập nhật nội dung của slider Slick
-    $('.product-gallery').slick('unslick'); // Hủy Slick trước khi cập nhật
-    $('.product-gallery').html(''); // Xóa nội dung hiện tại
+    const productImages = product.images; // Arrays containing image objects
+    // Update the contents of the Slick slider
+    $('.product-gallery').slick('unslick'); // Cancel Slick before updating
+    $('.product-gallery').html(''); // Delete current content
     $.each(productImages, function(index, image) {
       $('.product-gallery').append(`
       <div class="item-slick3" data-thumb="{{ asset('user/images/product/${image.path}') }}">
@@ -295,11 +301,11 @@
       </div>
     `);
     });
-    // Tạo lại các phần tử điều khiển
+    // Recreating control elements
     $('.product-gallery').parent().find('.wrap-slick3-dots').empty();
     $('.product-gallery').parent().find('.wrap-slick3-arrows').empty();
 
-    // Tạo lại dots
+    // Recreating dots
     $('.product-gallery').slick('getSlick').options.dots = true;
     $('.product-gallery').slick('getSlick').options.customPaging = function(slick, index) {
       var portrait = $(slick.$slides[index]).data('thumb');
@@ -307,7 +313,7 @@
 
     };
 
-    // Tạo lại arrows
+    // Recreating arrows
     $('.product-gallery').parent().append('<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>');
     $('.product-gallery').slick('slickAdd', '<button class="arrow-slick3 prev-slick3"><i class="fa fa-angle-left" aria-hidden="true"></i></button>', 0);
     $('.product-gallery').slick('slickAdd', '<button class="arrow-slick3 next-slick3"><i class="fa fa-angle-right" aria-hidden="true"></i></button>', $('.product-gallery').slick('getSlick').slideCount - 1);

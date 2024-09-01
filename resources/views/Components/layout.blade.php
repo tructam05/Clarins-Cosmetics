@@ -99,7 +99,7 @@
             </form>
 
             <a href="{{url('/cart')}}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-              data-notify="{{(auth()->check()) ? $sharedData['cart']->where('customer_id',auth()->user()->id)->count() : '0' }}">
+              data-notify="{{(auth()->check() && $sharedData['cart']->where('customer_id',auth()->user()->id)->first() != null) ? $sharedData['cart']->where('customer_id',auth()->user()->id)->first()->cartDetails->count() : '0' }}">
               <i class="zmdi zmdi-shopping-cart"></i>
             </a>
 

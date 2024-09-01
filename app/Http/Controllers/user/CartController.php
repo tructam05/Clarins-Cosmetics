@@ -12,6 +12,8 @@ use App\Models\WishList;
 use Exception;
 use Illuminate\Http\Request;
 
+use function Pest\Laravel\delete;
+
 class CartController extends Controller
 {
   public function index()
@@ -70,7 +72,18 @@ class CartController extends Controller
       $new_cart_item->save();
       return redirect()->back();
     } catch (Exception $ex) {
-      dd($ex);
+      return view('errors/404');
+    }
+  }
+  public function removeFromCart($cartItem_id)
+  {
+    try {
+      $currentCartItem = CartDetail::find($cartItem_id);
+      $currentCartItem->delete();
+
+      return redirect()->back();
+    } catch (Exception $ex) {
+      return view('errors/404');
     }
   }
 }
