@@ -14,7 +14,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('clarins/category/index')}}" class="nav-link "> <!-- active -->
+                <a href="{{url('clarins/category/index')}}" class="nav-link active"> <!-- active -->
                   <i class="far fa-circle nav-icon"></i>
                   <p>Clarins Category</p>
                 </a>
@@ -26,7 +26,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('clarins/category/add')}}" class="nav-link active">
+                <a href="{{url('clarins/category/add')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Category</p>
                 </a>
@@ -43,10 +43,26 @@
                   <p>Out Of Stock</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{url('clarins/contact')}}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact Us</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('clarins/feedback')}}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Feedback Center</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('clarins/chart')}}" class="nav-link  ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Analytics</p>
+                </a>
+              </li>
             </ul>
           </li>
-
-
         </ul>
 </nav>
 @endsection
@@ -57,7 +73,9 @@
 
 <h3>Edit Category</h3>
 @if(Session::has('msg'))
-    {{session('msg')}}
+    <div class="alert alert-success" id="alert">
+        {{ session('msg') }}
+    </div>
 @endif
 <form action="{{url('/clarins/category/update')}}" method="post">
     @csrf
