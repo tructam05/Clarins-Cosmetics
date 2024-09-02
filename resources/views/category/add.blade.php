@@ -43,6 +43,24 @@
                   <p>Out Of Stock</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{url('clarins/contact')}}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact Us</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('clarins/feedback')}}" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Feedback Center</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('clarins/chart')}}" class="nav-link  ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Analytics</p>
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -53,7 +71,7 @@
 
 @section('content')
 
-<h3>Thêm danh mục mới</h3>
+<h3>Add New Category</h3>
 
 @if(Session::has('msg'))
     <div class="alert alert-success" id="alert">

@@ -44,13 +44,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{url('clarins/contact')}}" class="nav-link active">
+          <a href="{{url('clarins/contact')}}" class="nav-link  ">
             <i class="far fa-circle nav-icon"></i>
             <p>Contact Us</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{url('clarins/feedback')}}" class="nav-link ">
+          <a href="{{url('clarins/feedback')}}" class="nav-link active">
             <i class="far fa-circle nav-icon"></i>
             <p>Feedback Center</p>
           </a>
@@ -69,57 +69,58 @@
 </nav>
 @endsection
 
+
+
+
 @section('content')
 
 
-<div class="question-display">
-  <div class="question-header">
-    <h3>User Questions</h3>
-  </div>
+@if(session('success'))
+<div class="alert alert-success">
+  {{ session('success') }}
+</div>
+@elseif(session('error'))
+<div class="alert alert-danger">
+  {{ session('error') }}
+</div>
+@endif
 
-  @foreach ($contacts as $contact)
-
-  <div class="question-content">
-    <p>
-      <strong>Full name:</strong> {{ $contact->name }}
-    </p>
-
-
-
-    <p>
-      <strong>Email:</strong> {{$contact->email}}
-    </p>
-
-
-    <p>
-      <strong>Phone:</strong> {{$contact->phone}}
-    </p>
-
-
-    <p>
-      <strong>Question:</strong>
-    </p>
-    <p> {{$contact->question}} </p>
-
-    <p>
-      <i>Created: {{$contact->created_at}}</i>
-    </p>
-  </div>
-  <div class="question-footer">
-    <a href="{{ route('contact.show', $contact) }}">
-      <button class="btn-reply">Reply</button>
-    </a>
-
-    <a href="">
-      <button class="btn-archive">Repository</button>
-    </a>
-
-    <a href="">
-      <button class="btn-archive">Delete</button>
-    </a>
-  </div>
-
-
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Customer</th>
+      <th>Rate</th>
+      <th>Content</th>
+      <th>Time</th>
+      <th>Status</th>
+      <th>Active</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach ($reviews as $review)
+    <tr>
+      <td>{{ $review->product->name }}</td>
+      <td>{{ $review->user->name }}</td>
+      <td>{{ $review->rating }}</td>
+      <td>{{ $review->content }}</td>
+      <td>{{ $review->created_at }}</td>
+      <td>
+        @if ($review->is_approved)
+        Approved
+        @else
+        <form action="{{ route('feedback.approve', $review) }}" method="POST">
+          @csrf
+          @method('PUT')
+          <button type="submit" class="btn-approve">Approve</button>
+        </form>
+        @endif
+      </td>
+      <td>
+        <form action="{{ route('feedback.destroy', $review) }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <button type="submit" onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn-delete">Delete</button>
 
 
 
@@ -127,32 +128,52 @@
 
 
 
+        </form>
+      </td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
+@endsection
 
+<style>
+  .table {
+    border-collapse: collapse;
+    width: 100%;
+  }
 
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
 
+  th {
+    background-color: #f2f2f2;
+  }
 
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
 
+  .btn-approve {
+    background-color: #4CAF50;
+    /* Màu xanh lá */
+    color: white;
+    padding: 6px 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
 
-
-
-  @endforeach
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  @endsection
+  .btn-delete {
+    background-color: #e7264c;
+    /* Màu đỏ */
+    color: white;
+    padding: 6px 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
+</style>

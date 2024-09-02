@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\admin\CategoryAdminController;
+use App\Http\Controllers\admin\ChartController;
 use App\Http\Controllers\admin\ContactUsController;
+use App\Http\Controllers\admin\FeedbackController;
 use App\Http\Controllers\admin\LayoutController;
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\PersonalPageController;
@@ -65,6 +67,8 @@ Route::group(['prefix' => 'clarins','middleware' => ['CheckRole']], function () 
     Route::get('/', [CategoryAdminController::class, 'index']);
     Route::get('/admin', [LayoutController::class, 'admin']);
 
+    Route::get('chart', [ChartController::class, 'index']);
+
     Route::group(['prefix' => 'category'], function () {
         // Show multiple categories
         Route::get('/', [CategoryAdminController::class, 'index']);
@@ -98,7 +102,9 @@ Route::group(['prefix' => 'clarins','middleware' => ['CheckRole']], function () 
         Route::get('/delete/{id}', [ProductAdminController::class, 'delete']);
 
         // Edit category products 
-        Route::get('/edit', [ProductAdminController::class, 'edit']);
+        Route::get('/edit/{id}', [ProductAdminController::class, 'edit']);
+        Route::post('/update', [ProductAdminController::class, 'update']);
+        Route::get('/delete-image/{image_id}', [ProductAdminController::class, 'deleteImage']);
 
         //Product Details
         Route::resource('products', ProductAdminController::class);
@@ -122,4 +128,9 @@ Route::group(['prefix' => 'clarins','middleware' => ['CheckRole']], function () 
         Route::get('/', [PersonalPageController::class, 'index']);
         Route::get('/index', [PersonalPageController::class, 'index']);
     });;
+    Route::group(['prefix' => 'feedback'], function () {
+        Route::get('/', [FeedbackController::class, 'index'])->name('feedback.index');
+        Route::put('/{review}', [FeedbackController::class, 'approve'])->name('feedback.approve');
+        Route::delete('/{review}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
+    });
 });
