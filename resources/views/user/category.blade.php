@@ -174,7 +174,7 @@
               </div>
 
               <div class="block2-txt-child2 flex-r p-t-3">
-                @if($wishlists->where('product_id',$product->id)->where('customer_id',auth()->user()->id)->first() && auth()->user())
+                @if(auth()->user() && $wishlists->where('product_id',$product->id)->where('customer_id',auth()->user()->id)->first() )
                 <a href="{{url('/remove-from-wishlist/'.$product->id)}}" class="dis-block cl13 hov-cl1 trans-04 p-l-22 p-r-11">
                   <i class=" zmdi zmdi-favorite"></i>
                 </a>
