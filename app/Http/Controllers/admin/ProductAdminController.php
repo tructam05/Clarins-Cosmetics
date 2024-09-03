@@ -17,7 +17,7 @@ class ProductAdminController extends Controller
 
 
 
-    // Hiển thị danh sách sản phẩm
+    // Display a list of products
 
     public function index()
     {
@@ -25,21 +25,21 @@ class ProductAdminController extends Controller
         return view('product/index', compact('products'));
     }
 
-
+    // Show a specific product
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        $images = $product->images; // Lấy danh sách hình ảnh của sản phẩm
+        $images = $product->images; // Get the product's images
 
         return view('product/details', compact('product', 'images'));
     }
 
 
 
-
+    // Show products by category
     public function category($id)
     {
-        $product = Product::with('category')->find($id); // Lấy mỹ phẩm cùng với danh mục của nó
+        $product = Product::with('category')->find($id); // Get the product with its category
         return view('product.index', compact('product'));
     }
 
@@ -47,41 +47,52 @@ class ProductAdminController extends Controller
 
 
 
-    // thực hiện thêm sản phẩm 
+    // Add a new product
     public function add()
     {
-        $categories = Category::all(); // Lấy tất cả danh mục để hiển thị trong dropdown
+        $categories = Category::all(); // Get all categories for the dropdown
 
-        return view('product/add', ['categories' => $categories]); // Đảm bảo 'dash4' là tên file Blade
+        return view('product/add', ['categories' => $categories]);
     }
 
 
     public function save(Request $request)
     {
         try {
-            $products = new Product();
-            $products->name = $request->input('name');
-            $products->price = $request->input('price');
-            $products->quantity = $request->input('quantity');
-            $products->short_description = $request->input('short_description');
-            $products->description = $request->input('description');
-            $products->ingredients = $request->input('ingredients');
-            $products->category_id = $request->input('category_id');
-            $products->status = (int) $request->input('status'); // Chuyển đổi thành số nguyên
-            // $products->created_at = now(); // Hoặc có thể dùng DateTime nếu cần định dạng cụ thể
-            // $products->updated_at = now(); // Tương tự như trên
+            $product = new Product();
+            $product->name = $request->input('name');
+            $product->price = $request->input('price');
+            $product->quantity = $request->input('quantity');
+            $product->short_description = $request->input('short_description');
+            $product->description = $request->input('description');
+            $product->ingredients = $request->input('ingredients');
+            $product->category_id = $request->input('category_id');
+            $product->status = (int) $request->input('status');
+
+
+            $product->save(); // Save to the database
+
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $photo = $this->generateFileName($file->getClientOriginalName());
+                $file->move(public_path('user/images/product'), $photo);
+
+
+                $product_image = new ProductImage;
+                $product_image->product_id = $product->id;
+                $product_image->path = $photo;
+                $product_image->is_primary = 1;
+                $product_image->save();
+            }
 
 
 
-
-            $products->save(); // Lưu vào database
-
-            // Thông báo thành công
-            $request->session()->flash('msg', 'Thêm sản phẩm thành công!');
+            // Success message
+            $request->session()->flash('msg', 'Added product successfully!');
             return redirect('clarins/product/index');
         } catch (Exception $ex) {
-            // Thông báo thất bại
-            $request->session()->flash('msg', 'Thêm sản phẩm thất bại: ' . $ex->getMessage());
+            // Failure message
+            $request->session()->flash('msg', 'Added product failed!' . $ex->getMessage());
             return redirect('clarins/product/add');
         }
     }
@@ -93,14 +104,22 @@ class ProductAdminController extends Controller
 
 
 
-    // thực hiện xóa sản phẩm 
+    // Delete a product
     public function delete($id, Request $request)
     {
         try {
-            Product::where('id', $id)->delete();
-            $request->session()->flash('msg', 'Deleted successfully');
+            $product = Product::find($id);
+            if ($product) {
+                // Delete related product images
+                $product->images()->delete();
+                // Delete the product itself
+                $product->delete();
+                $request->session()->flash('msg', 'Deleted successfully');
+            } else {
+                $request->session()->flash('msg', 'Product not found');
+            }
         } catch (Exception $ex) {
-            $request->session()->flash('msg', 'delete failure');
+            $request->session()->flash('msg', 'Delete failure');
         }
         return redirect('clarins/product/index');
     }
@@ -116,42 +135,28 @@ class ProductAdminController extends Controller
 
 
 
-    // thực hiện edit sản phẩm 
+    // Update a product
     public function update(Request $request)
     {
         try {
-            // Tìm sản phẩm theo id
+            // Find the product by ID
             $product = Product::find($request->post('id'));
 
-            // Kiểm tra nếu có file mới được upload
-            // if ($request->hasFile('file')) {
-            //     // Xóa file ảnh cũ nếu có
-            //     if ($product->photo && file_exists(public_path('user/images/product/' . $product->photo))) {
-            //         unlink(public_path('user/images/product/' . $product->photo));
-            //     }
 
-            //     // Lưu file ảnh mới
-            //     $file = $request->file('file');
-            //     $photo = $this->generateFileName($file->getClientOriginalName());
-            //     $file->move(public_path('user/images/product'), $photo);
-
-            //     // Cập nhật tên file ảnh mới vào product
-            //     $product->photo = $photo;
-            // }
             if ($request->hasFile('file')) {
                 $file = $request->file('file');
                 $photo = $this->generateFileName($file->getClientOriginalName());
                 $file->move(public_path('user/images/product'), $photo);
-            
 
-            $product_image = new ProductImage;
-            $product_image->product_id = $request->post('id');
-            $product_image->path = $photo;
-            $product_image->is_primary = 0;
-            $product_image->save();
+
+                $product_image = new ProductImage;
+                $product_image->product_id = $request->post('id');
+                $product_image->path = $photo;
+                $product_image->is_primary = 0;
+                $product_image->save();
             }
 
-            // Cập nhật các thông tin khác của sản phẩm
+            // Update product information
             $product->name = $request->post('name');
             $product->price = $request->post('price');
             $product->quantity = $request->post('quantity');
@@ -161,16 +166,16 @@ class ProductAdminController extends Controller
             $product->category_id = $request->post('category_id');
             $product->status = $request->post('status') == 1 ? 1 : 0;
 
-            // Lưu các thay đổi
+            // Save changes
             $product->save();
 
-            // Hiển thị thông báo thành công
+            // Success message
             $request->session()->flash('msg', 'Product updated successfully');
             return redirect('clarins/product/index');
         } catch (Exception $ex) {
-            // Hiển thị thông báo lỗi nếu có lỗi xảy ra
+            // Failure message
             $request->session()->flash('msg', 'Product update failed');
-            dd($ex);
+
             return redirect('clarins/product/edit/' . $request->post('id'));
         }
     }
@@ -217,13 +222,13 @@ class ProductAdminController extends Controller
                     unlink(public_path('user/images/product/' . $image->path));
                 }
                 $image->delete();
-                $request->session()->flash('msg', 'Hình ảnh đã được xóa thành công');
+                $request->session()->flash('msg', 'Image has been successfully deleted');
             } else {
-                $request->session()->flash('msg', 'Hình ảnh không tồn tại');
+                $request->session()->flash('msg', 'Image not found');
             }
             return redirect()->back();
         } catch (Exception $ex) {
-            $request->session()->flash('msg', 'Xóa hình ảnh thất bại');
+            $request->session()->flash('msg', 'Remove images failed');
             return redirect()->back();
         }
     }

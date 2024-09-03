@@ -90,8 +90,8 @@
           datasets: [{
             label: 'Revenue in 2024',
             data: @json($revenues),
-            backgroundColor: 'rgba(181, 24, 40, 0.2)', //Màu nền của cột 
-            borderColor: '#b51828', // Màu viền của cột 
+            backgroundColor: 'rgba(181, 24, 40, 0.2)',
+            borderColor: '#b51828',
             borderWidth: 1
           }]
         },

@@ -12,7 +12,6 @@ class WishListController extends Controller
     $data = [
       'wishlists' => WishList::where('customer_id',auth()->user()->id)->with('productId.images')->paginate(12)
     ];
-    // dd(WishList::where('customer_id', auth()->user()->id)->with('productId.images')->paginate(12));
     return view('user/wishlist')->with($data);
   }
 }

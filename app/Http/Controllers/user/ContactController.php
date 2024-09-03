@@ -18,22 +18,18 @@ class ContactController extends Controller
   }
   public function submit(Request $request)
   {
-    try
-    {
-    $report=[
-      'name' => $request->post('name'),
-      'email' => $request->post('email'),
-      'phone' => $request->post('phone'),
-      'question' => $request->post('question'),
-    ];
-    ContactUs::create($report);
-    return redirect('/contact')->with('success', 'Contact form submitted successfully!');
-  }
-  catch(Exception $ex)
-  {
-    
-    alert('Failed');
-  }
-    return redirect('/contact')->with('error', 'An error occurred. Please try again later.');
+    try {
+      $report = [
+        'name' => $request->post('name'),
+        'email' => $request->post('email'),
+        'phone' => $request->post('phone'),
+        'question' => $request->post('question'),
+      ];
+      ContactUs::create($report);
+      return redirect()->back();
+    } catch (Exception $ex) {
+
+      return redirect()->back();
+    }
   }
 }

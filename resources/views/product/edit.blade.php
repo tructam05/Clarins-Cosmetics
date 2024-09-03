@@ -161,7 +161,7 @@
     </div>
 
     <div class="card-footer">
-      <button type="submit" class="btn btn-pink">Update List</button>
+      <button type="submit" class="btn btn-pink">Update</button>
       <input type="hidden" name="id" value="{{$product->id}}">
       <input type="hidden" name="photo" value="{{$product->photo}}">
     </div>

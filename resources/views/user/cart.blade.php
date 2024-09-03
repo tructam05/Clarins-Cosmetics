@@ -43,7 +43,7 @@
                       @endforeach
                     </div>
                   </td>
-                  <td class="column-2">{{$cart_detail->product->name}}</td>
+                  <td class="column-2"><a href="{{url('product/'.$cart_detail->product->name.'/'.$cart_detail->product->id)}}" class="cl2">{{$cart_detail->product->name}}</a></td>
                   <td class="column-3 p-l-40">${{number_format($cart_detail->product->price , 2)}}</td>
                   <td class="column-4">x{{$cart_detail->quantity}}</td>
                   <td class="column-5">${{number_format( $cart_detail->total , 2 )}}</td>

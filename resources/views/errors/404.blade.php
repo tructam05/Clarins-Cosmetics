@@ -186,7 +186,7 @@
     <span class="four"><span class="screen-reader-text">4</span></span>
   </section>
   <div class="link-container">
-    <a  href="{{url('/home')}}" class="more-link">Back to Homepage</a>
+    <a href="{{url('/home')}}" class="more-link">Back to Homepage</a>
   </div>
 </body>
 

@@ -14,7 +14,7 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="{{url('clarins/category/index')}}" class="nav-link "> <!-- active -->
+          <a href="{{url('clarins/category/index')}}" class="nav-link ">
             <i class="far fa-circle nav-icon"></i>
             <p>Clarins Category</p>
           </a>
@@ -105,54 +105,9 @@
       <i>Created: {{$contact->created_at}}</i>
     </p>
   </div>
-  <div class="question-footer">
-    <a href="{{ route('contact.show', $contact) }}">
-      <button class="btn-reply">Reply</button>
-    </a>
-
-    <a href="">
-      <button class="btn-archive">Repository</button>
-    </a>
-
-    <a href="">
-      <button class="btn-archive">Delete</button>
-    </a>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <hr>
 
 
   @endforeach
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   @endsection

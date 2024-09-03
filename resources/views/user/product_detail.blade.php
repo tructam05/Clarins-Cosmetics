@@ -67,7 +67,7 @@
                 <div class="flex-w flex-r-m p-b-10">
                   <div class=" flex-w flex-m respon6-next">
                     <div class="flex-m bor9 p-r-10 m-r-11">
-                      @if($wishlists->where('product_id',$product->id)->first() && auth()->user())
+                      @if($wishlists->where('product_id',$product->id)->where('customer_id',auth()->user()->id)->first() && auth()->user())
                       <a href="{{url('/remove-from-wishlist/'.$product->id)}}" class="dis-block icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11">
                         <i class=" zmdi zmdi-favorite"></i>
                       </a>
@@ -149,7 +149,7 @@
                   <div class="p-b-30 m-lr-15-sm">
                     <!-- Review -->
                     @foreach($reviews as $review)
-                    <div class="flex-w flex-t p-b-68">
+                    <div class="flex-w flex-t p-b-20">
                       <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
                         <img src="{{asset('/user/images/'.$review->customerId->avatar)}}" alt="AVATAR">
                       </div>
@@ -174,7 +174,9 @@
                         </p>
                       </div>
                     </div>
+                    <hr>
                     @endforeach
+                    <hr>
                     <!-- Add review -->
                     <form class="w-full" action="{{url('/add-review/'.$product->id)}}" method="post">
                       @csrf
@@ -263,7 +265,7 @@
                 </div>
 
                 <div class="block2-txt-child2 flex-r p-t-3">
-                  @if($wishlists->where('product_id',$product->id)->first() && auth()->user())
+                  @if($wishlists->where('product_id',$product->id)->where('customer_id',auth()->user()->id)->first() && auth()->user())
                   <a href="{{url('/remove-from-wishlist/'.$product->id)}}" class="dis-block cl13 hov-cl1 trans-04 p-l-22 p-r-11">
                     <i class=" zmdi zmdi-favorite"></i>
                   </a>
