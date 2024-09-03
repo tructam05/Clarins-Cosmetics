@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller ;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use DateTime;
+use Exception;
 use Illuminate\Http\Request;
 
-class CategoryAdminController extends Controller 
+class CategoryAdminController extends Controller
 {
 
 
-    // Hiển thị danh sách danh mục
-    public function index () {
+    // Display a list of categories
+    public function index()
+    {
         $data = [
             'categories' => Category::get()
-        ] ; 
-        return view('category/index')->with($data) ; 
+        ];
+        return view('category/index')->with($data);
     }
 
 
@@ -24,30 +27,29 @@ class CategoryAdminController extends Controller
 
 
 
-    // Thêm danh mục
-    public function add () {
+    // Show the category add form
+    public function add()
+    {
 
-        return view('category/add') ; 
+        return view('category/add');
     }
 
-    // Phương thức lưu danh mục mới
+    // Save a new category
     public function save(Request $request)
     {
         try {
             $category = new Category;
             $category->name = $request->input('name');
             $category->description = $request->input('description');
-            $category->created_at = now(); // Hoặc có thể dùng DateTime nếu cần định dạng cụ thể
-            $category->updated_at = now(); // Tương tự như trên
 
-            $category->save(); // Lưu vào database
+            $category->save(); // Save to the database
 
-            // Thông báo thành công
-            $request->session()->flash('msg', 'Thêm danh mục thành công!');
+            // Success message
+            $request->session()->flash('msg', 'Added a category successfully!');
             return redirect('clarins/category/index');
         } catch (Exception $ex) {
-            // Thông báo thất bại
-            $request->session()->flash('msg', 'Thêm danh mục thất bại: ' . $ex->getMessage());
+            // Failure message
+            $request->session()->flash('msg', 'Added a category failed!' . $ex->getMessage());
             return redirect('clarins/category/add');
         }
     }
@@ -55,30 +57,34 @@ class CategoryAdminController extends Controller
 
 
 
-    // thực hiện xóa category
+    // Delete a category
     public function delete($id, Request $request)
     {
         try {
-            Category::where('id', $id)->delete();
-            $request->session()->flash('msg', 'Deleted successfully');
+            if (!Product::where('category_id', $id)->exists()) {
+                Category::where('id', $id)->delete();
+                $request->session()->flash('msg', 'Deleted successfully');
+            } else {
+                $request->session()->flash('msg', 'Category that contain products cannot be deleted');
+            }
         } catch (Exception $ex) {
-            $request->session()->flash('msg', 'delete failure');
+            $request->session()->flash('msg', 'Deleted failed');
         }
-        return redirect('product/index');
+        return redirect()->back();
     }
 
 
 
 
 
-    // thực hiện edit category 
+    // Show the category edit form 
     public function edit($id)
     {
-        $category = Category::find($id); // Tìm danh mục theo ID
-        return view('category/edit', ['categories' => $category]); // Đảm bảo 'edit' là tên file Blade
+        $category = Category::find($id);
+        return view('category/edit', ['categories' => $category]);
     }
 
-
+    // Update a category
     public function update(Request $request)
     {
         try {
@@ -97,14 +103,4 @@ class CategoryAdminController extends Controller
             return redirect('/clarins/category/edit/' . $id);
         }
     }
-
-
-
 }
-
-
-
-
-
-
-?>

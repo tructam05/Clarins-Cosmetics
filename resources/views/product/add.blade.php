@@ -14,7 +14,7 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="{{url('clarins/category/index')}}" class="nav-link "> <!-- active -->
+          <a href="{{url('clarins/category/index')}}" class="nav-link ">
             <i class="far fa-circle nav-icon"></i>
             <p>Clarins Category</p>
           </a>
@@ -70,7 +70,7 @@
 @endsection
 @section('content')
 
-<h3>Thêm sản phẩm mới</h3>
+<h3>Add New Product</h3>
 
 @if(Session::has('msg'))
 <div class="alert alert-success" id="alert">
@@ -78,7 +78,7 @@
 </div>
 @endif
 
-<form action="{{ url('/clarins/product/save') }}" method="post">
+<form action="{{ url('/clarins/product/save') }}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="card-body">
     <div class="form-group">
@@ -92,10 +92,8 @@
       <div style="display: flex; align-items: center;">
         <input type="text" name="price" class="form-control" placeholder="Enter Price">
         <select name="currency" class="form-control" style="border: 2px solid #B51828; border-radius: 5px; width: auto;">
-          <option value="VND">VND</option>
           <option value="USD">USD</option>
           <option value="EUR">EUR</option>
-          <!-- Thêm các đơn vị tiền tệ khác ở đây -->
         </select>
       </div>
     </div>
@@ -119,6 +117,11 @@
       <textarea name="description" class="form-control" placeholder="Enter Description"></textarea>
     </div>
 
+    
+    <div class="form-group">
+      <label for="image">Image</label>
+      <input type="file" name="image" class="form-control">
+    </div>
 
 
     <div class="form-group">
@@ -155,7 +158,7 @@
     </div>
 
     <div class="card-footer">
-      <button type="submit" class="btn btn-pink">Create List</button>
+      <button type="submit" class="btn btn-pink">Add product</button>
     </div>
   </div>
 </form>

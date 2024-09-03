@@ -57,7 +57,7 @@
           <a href="{{url('clarins/')}}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{url('/home')}}" class="nav-link">Back GUI</a>
+          <a target="_blank" href="{{url('/home')}}" class="nav-link">Back GUI</a>
         </li>
         <form method="POST" action="{{url('/logout')}}" class="flex-c m-t-30">
 
@@ -210,7 +210,7 @@
             <img src="{{asset('admin')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="{{url('clarins/personalpage')}}" class="d-block">Donna Bobby</a>
+            <a href="" class="d-block">Admin</a>
           </div>
         </div>
 

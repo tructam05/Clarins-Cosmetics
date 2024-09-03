@@ -14,7 +14,7 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="{{url('clarins/category/index')}}" class="nav-link "> <!-- active -->
+          <a href="{{url('clarins/category/index')}}" class="nav-link "> 
             <i class="far fa-circle nav-icon"></i>
             <p>Clarins Category</p>
           </a>

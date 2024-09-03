@@ -32,7 +32,6 @@ class ProductController extends Controller
         'reviews' => Reviews::with('customerId')->where('product_id', $product_id)->where('is_approved', 1)->get(),
         'wishlists' => WishList::get()
       ];
-      // dd(Reviews::with('customerId')->where('product_id', $product_id)->get());
       return view('user/product_detail')->with($data);
     } catch (Exception $ex) {
       return view('errors/404');

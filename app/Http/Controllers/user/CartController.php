@@ -8,11 +8,9 @@ use App\Models\CartDetail;
 use App\Models\CustomerOrder;
 use App\Models\OrderDetail;
 use App\Models\Product;
-use App\Models\WishList;
 use Exception;
 use Illuminate\Http\Request;
 
-use function Pest\Laravel\delete;
 
 class CartController extends Controller
 {
@@ -21,7 +19,6 @@ class CartController extends Controller
     $data = [
       'cart' => Cart::where('customer_id', auth()->user()->id)->with('cartDetails.product.images')->get()
     ];
-    // dd(Cart::where('customer_id',auth()->user()->id)->with('cartDetails.product.images')->get());
     return view('user/cart')->with($data);
   }
 

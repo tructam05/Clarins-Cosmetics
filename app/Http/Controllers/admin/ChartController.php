@@ -26,7 +26,7 @@ class ChartController extends Controller
       ->pluck('revenue', 'month')
       ->toArray();
 
-    // Điền giá trị 0 cho những tháng không có doanh thu
+    //Fill in the value of 0 for months with no revenue
     $revenues = [];
     for ($i = 1; $i <= 12; $i++) {
       $revenues[] = $monthlyRevenue[$i] ?? 0;

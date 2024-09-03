@@ -6,7 +6,6 @@ use App\Http\Controllers\admin\ContactUsController;
 use App\Http\Controllers\admin\FeedbackController;
 use App\Http\Controllers\admin\LayoutController;
 use App\Http\Controllers\admin\LoginController;
-use App\Http\Controllers\admin\PersonalPageController;
 use App\Http\Controllers\admin\ProductAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\user\ProductController;
@@ -38,7 +37,6 @@ Route::group(['prefix' => ''], function () {
     Route::get('/category/{category_name}/{category_id}', [CategoryController::class, 'index']);
     Route::get('/product/{product_name}/{product_id}', [ProductController::class, 'productDetail']);
 
-    // Route::post('/login/submit', [LoginController::class, 'login']);
     Route::post('/logout', [LoginController::class, 'logout']);
     Route::post('/new-account', [LoginController::class, 'signUp']);
     Route::get('/create-account', [LoginController::class, 'createAccount']);
@@ -124,10 +122,7 @@ Route::group(['prefix' => 'clarins','middleware' => ['CheckRole']], function () 
     });
 
 
-    Route::group(['prefix' => 'personalpage'], function () {
-        Route::get('/', [PersonalPageController::class, 'index']);
-        Route::get('/index', [PersonalPageController::class, 'index']);
-    });;
+    
     Route::group(['prefix' => 'feedback'], function () {
         Route::get('/', [FeedbackController::class, 'index'])->name('feedback.index');
         Route::put('/{review}', [FeedbackController::class, 'approve'])->name('feedback.approve');

@@ -91,7 +91,11 @@
                 @foreach($order_detail->product->images->where('is_primary','1') as $image)
                 <img src="{{asset('user/images/product/'.$image->path)}}" alt="{{$order_detail->product->name}}" width="50" height="50">
                 @endforeach
-                <div class="">{{$order_detail->product->name}} <br> x{{$order_detail->quantity}}</div>
+                <div>
+                  <a href="{{url('product/'.$order_detail->product->name.'/'.$order_detail->product->id)}}" class="cl2">{{$order_detail->product->name}}</a>
+                  <br>
+                  <span class="flex-c" class="cl2">x{{$order_detail->quantity}}</span>
+                </div>
                 <div class="cl2">${{$order_detail->total}}</div>
               </li>
               @endforeach

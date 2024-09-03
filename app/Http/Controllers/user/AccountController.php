@@ -4,12 +4,8 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\CustomerOrder;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Redirect;
 
 class AccountController extends Controller
 {
@@ -25,8 +21,6 @@ class AccountController extends Controller
       'customer' => auth()->user(),
       'orders' => $orders
     ];
-    // dd($order_detail);
-    // dd($orders);
     return view('user/account')->with($data);
   }
 

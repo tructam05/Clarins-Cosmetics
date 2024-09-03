@@ -14,7 +14,7 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="{{url('clarins/category/index')}}" class="nav-link "> <!-- active -->
+          <a href="{{url('clarins/category/index')}}" class="nav-link ">
             <i class="far fa-circle nav-icon"></i>
             <p>Clarins Category</p>
           </a>
@@ -120,13 +120,7 @@
         <form action="{{ route('feedback.destroy', $review) }}" method="POST">
           @csrf
           @method('DELETE')
-          <button type="submit" onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn-delete">Delete</button>
-
-
-
-
-
-
+          <button type="submit" onclick="return confirm('Are you sure you want to delete?')" class="btn-delete">Delete</button>
 
         </form>
       </td>
@@ -159,7 +153,6 @@
 
   .btn-approve {
     background-color: #4CAF50;
-    /* Màu xanh lá */
     color: white;
     padding: 6px 15px;
     border-radius: 10px;
@@ -169,7 +162,6 @@
 
   .btn-delete {
     background-color: #e7264c;
-    /* Màu đỏ */
     color: white;
     padding: 6px 15px;
     border-radius: 10px;

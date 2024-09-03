@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller ;
+use App\Http\Controllers\Controller;
 use App\Models\ContactUs;
 use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 
 
-class ContactUsController extends Controller 
+class ContactUsController extends Controller
 {
 
 
@@ -23,20 +23,4 @@ class ContactUsController extends Controller
     {
         return view('ContactUs.responder', compact('contact'));
     }
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-?>

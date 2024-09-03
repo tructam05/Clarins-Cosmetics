@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller ;
+use App\Http\Controllers\Controller;
 use App\Models\Reviews;
 
-class FeedbackController extends Controller 
+class FeedbackController extends Controller
 {
 
- 
+
     public function index()
     {
         $reviews = Reviews::with('product', 'user')->get();
@@ -20,10 +20,10 @@ class FeedbackController extends Controller
         $review = Reviews::findOrFail($id);
         $review->is_approved = 1;
         $review->save();
-    
-        // Thêm session để thông báo thành công
+
+        // Success message
         session()->flash('success', 'Feedback has been successfully approved!');
-    
+
         return redirect()->back();
     }
 
@@ -34,39 +34,4 @@ class FeedbackController extends Controller
 
         return redirect()->back()->with('error', 'Feedback has been deleted');
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-?>
