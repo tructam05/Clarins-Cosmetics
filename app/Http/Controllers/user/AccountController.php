@@ -14,7 +14,7 @@ class AccountController extends Controller
 
 
     $orders = CustomerOrder::where('customer_id', auth()->user()->id)
-      ->with('orderDetails.product.images')->orderBy('created_at','DESC')
+      ->with('orderDetails.product.images')->orderBy('created_at', 'DESC')
       ->get();
 
     $data = [
@@ -44,24 +44,20 @@ class AccountController extends Controller
       'email' => 'email',
       'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
+    $user = User::find($id);
+    $user->name = $request->post('name');
 
-    $avatarName = 'gallery-04.jpg';
     if ($request->hasFile('avatar')) {
       $avatarName = time() . '.' . $request->file('avatar')->getClientOriginalExtension();
       $request->file('avatar')->move(public_path('user\images'), $avatarName);
+      $user->avatar = $avatarName;
     }
-    
-    $user = User::find($id);
-    $user ->name = $request->post('name');
-    $user ->avatar = $avatarName;
-    $user ->age = $request->post('age');
-    $user ->phone = $request->post('phone');
-    $user ->email = $request->post('email');
+
+    $user->age = $request->post('age');
+    $user->phone = $request->post('phone');
+    $user->email = $request->post('email');
     $user->address = $request->post('address');
     $user->save();
-    
-    
-
     return redirect('/account');
   }
 }
