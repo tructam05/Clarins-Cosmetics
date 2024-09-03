@@ -19,6 +19,7 @@ class CartController extends Controller
     $data = [
       'cart' => Cart::where('customer_id', auth()->user()->id)->with('cartDetails.product.images')->get()
     ];
+    
     return view('user/cart')->with($data);
   }
 

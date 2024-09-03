@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -63,17 +64,21 @@ class LoginController extends Controller
     public function signUp(Request $request)
     {
         try {
-            $account = [
-                'name' => $request->post('name'),
-                'avatar' => 'banner-02.jpg',
-                'age' => $request->post('age'),
-                'phone' => $request->post('phone'),
-                'email' => $request->post('email'),
-                'password' => Hash::make($request->post('password')),
-                'remember_token' => '',
-                'address' => $request->post('address'),
-            ];
-            User::create($account);
+            $newAccount = new User;
+            $newAccount->name = $request->post('name');
+            $newAccount->avatar = 'banner-02.jpg';
+            $newAccount->age = $request->post('age');
+            $newAccount->phone = $request->post('phone');
+            $newAccount->email = $request->post('email');
+            $newAccount->password = Hash::make($request->post('password'));
+            $newAccount->remember_token = '';
+            $newAccount->address = $request->post('address');
+            $newAccount->save();
+         
+            
+            $newCart = new Cart;
+            $newCart->customer_id = $newAccount->id;
+            $newCart->save();
             return redirect('/home')->with('success', 'Create account successfully!');
         } catch (Exception $ex) {
 

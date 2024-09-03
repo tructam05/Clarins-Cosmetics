@@ -35,7 +35,7 @@
                   <div class="wrap-pic-w pos-relative">
                     <img src="{{asset('user/images/product/'.$image->path)}}" alt="IMG-PRODUCT">
 
-                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{asset('user/images/product/'.$image->path)}}">
+                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn2 trans-04" href="{{asset('user/images/product/'.$image->path)}}">
                       <i class="fa fa-expand"></i>
                     </a>
                   </div>
@@ -67,7 +67,7 @@
                 <div class="flex-w flex-r-m p-b-10">
                   <div class=" flex-w flex-m respon6-next">
                     <div class="flex-m bor9 p-r-10 m-r-11">
-                      @if($wishlists->where('product_id',$product->id)->where('customer_id',auth()->user()->id)->first() && auth()->user())
+                      @if(auth()->user() && $wishlists->where('product_id',$product->id)->where('customer_id',auth()->user()->id)->first() )
                       <a href="{{url('/remove-from-wishlist/'.$product->id)}}" class="dis-block icon-header-item cl13 hov-cl1 trans-04 p-l-22 p-r-11">
                         <i class=" zmdi zmdi-favorite"></i>
                       </a>
@@ -265,7 +265,7 @@
                 </div>
 
                 <div class="block2-txt-child2 flex-r p-t-3">
-                  @if($wishlists->where('product_id',$product->id)->where('customer_id',auth()->user()->id)->first() && auth()->user())
+                  @if(auth()->user() && $wishlists->where('product_id',$product->id)->where('customer_id',auth()->user()->id)->first() )
                   <a href="{{url('/remove-from-wishlist/'.$product->id)}}" class="dis-block cl13 hov-cl1 trans-04 p-l-22 p-r-11">
                     <i class=" zmdi zmdi-favorite"></i>
                   </a>
