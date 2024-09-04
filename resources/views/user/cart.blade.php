@@ -45,7 +45,20 @@
                   </td>
                   <td class="column-2"><a href="{{url('product/'.$cart_detail->product->name.'/'.$cart_detail->product->id)}}" class="cl2">{{$cart_detail->product->name}}</a></td>
                   <td class="column-3 p-l-40">${{number_format($cart_detail->product->price , 2)}}</td>
-                  <td class="column-4">x{{$cart_detail->quantity}}</td>
+                  <td class="column-4">
+                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                      <div class="btn-num-product-down cl8 hov-btn2 trans-04 flex-c-m">
+                        <i class="fs-16 zmdi zmdi-minus"></i>
+                      </div>
+
+                      <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+
+                      <div class="btn-num-product-up cl8 hov-btn2 trans-04 flex-c-m">
+                        <i class="fs-16 zmdi zmdi-plus"></i>
+                      </div>
+
+                    </div>
+                  </td>
                   <td class="column-5">${{number_format( $cart_detail->total , 2 )}}</td>
                 </tr>
                 @endforeach

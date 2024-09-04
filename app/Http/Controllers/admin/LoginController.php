@@ -64,28 +64,40 @@ class LoginController extends Controller
     public function signUp(Request $request)
     {
         try {
+            // Validate the input data
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|string|min:8|confirmed',
+
+                'phone' => 'required|string|max:255',
+                'age' => 'required|integer|min:0',
+                'address' => 'required|string|max:255',
+            ]);
+
+            // Create the new account
             $newAccount = new User;
-            $newAccount->name = $request->post('name');
-            $newAccount->avatar = 'banner-02.jpg';
-            $newAccount->age = $request->post('age');
-            $newAccount->phone = $request->post('phone');
-            $newAccount->email = $request->post('email');
-            $newAccount->password = Hash::make($request->post('password'));
+            $newAccount->name = $validatedData['name'];
+            $newAccount->avatar = 'banner-02.jpg'; // Adjust the default avatar path as needed
+            $newAccount->age = $validatedData['age'];
+            $newAccount->phone = $validatedData['phone'];
+            $newAccount->email = $validatedData['email'];
+            $newAccount->password = Hash::make($validatedData['password']);
             $newAccount->remember_token = '';
-            $newAccount->address = $request->post('address');
+            $newAccount->address = $validatedData['address'];
             $newAccount->save();
-         
-            
+
+            // Create a new cart for the user
             $newCart = new Cart;
             $newCart->customer_id = $newAccount->id;
             $newCart->save();
+
+
+
             return redirect('/home')->with('success', 'Create account successfully!');
         } catch (Exception $ex) {
-
-            alert('Failed!');
-            dd($ex);
+            return redirect()->back();
         }
-        return redirect('/create-account')->with('error', 'An error occurred. Please try again later.');
     }
 
 

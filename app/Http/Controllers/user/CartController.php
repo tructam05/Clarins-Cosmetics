@@ -19,24 +19,29 @@ class CartController extends Controller
     $data = [
       'cart' => Cart::where('customer_id', auth()->user()->id)->with('cartDetails.product.images')->get()
     ];
-    
+
     return view('user/cart')->with($data);
   }
 
   public function checkout(Request $request)
   {
     try {
+      // Get the user's cart items
       $cartItems = Cart::where('customer_id', auth()->user()->id)
         ->with('cartDetails')
         ->first();
+      
+      // Get unique cart details based on product ID
       $uniqueCartDetails = $cartItems->cartDetails->unique('product_id');
-
+      
+      // Create a new customer order
       $customer_order = new CustomerOrder;
       $customer_order->customer_id = auth()->user()->id;
       $customer_order->payment = $request->post('payment');
       $customer_order->status = 1;
       $customer_order->save();
 
+      // Create order details for each unique product in the cart
       foreach ($uniqueCartDetails as $cartDetail) {
         $orderDetail = new OrderDetail();
         $orderDetail->order_id = $customer_order->id;
@@ -46,8 +51,10 @@ class CartController extends Controller
         $orderDetail->total = $cartDetail->total;
         $orderDetail->save();
       }
+
+      // Clear the cart
       $cartItems->cartDetails()->delete();
-      return redirect()->back();
+      return redirect('/account');
     } catch (Exception $ex) {
       return view('errors/404');
     }
